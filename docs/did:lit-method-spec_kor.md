@@ -60,6 +60,7 @@ lit-identifier 정규 표현식은 아래와 같습니다.
 [1-9A-HJ-NP-Za-km-z]{21,22}$
 ```
 
+</br>
 
 lit DID 식별자의 정규 표현식은 아래와 같습니다.
 
@@ -67,6 +68,7 @@ lit DID 식별자의 정규 표현식은 아래와 같습니다.
 did:lit:1-9A-HJ-NP-Za-km-z]{21,22}$
 ```
 
+</br>
 
 
 유효한 `did:lit` 식별자 DID는 did:lit:X91iGEUwpjraFUoMArHqsZ 같을 수 있습니다.
@@ -77,7 +79,7 @@ did:lit:1-9A-HJ-NP-Za-km-z]{21,22}$
 
 </br>
 
-### 2.1 DID Document 예
+### 2.1 DID Document 예시
 
 `lit` DID Document에는 아래와 같은 속성값이 포함됩니다.
 
