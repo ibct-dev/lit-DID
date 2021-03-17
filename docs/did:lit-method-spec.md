@@ -193,8 +193,6 @@ did:lit:1-9A-HJ-NP-Za-km-z]{21,22}$
 
 ## 2.2 CRUD Operation
 
-------
-
 DID method 명세에는 lit 컨트랙트를 통해 CRUD(Create, Read, Update, Delete)할 수 있는 데이터에 대해 소개하고 작업 과정에 대해 설명합니다.
 
 DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에 대해 소개하고자 합니다.
@@ -602,7 +600,7 @@ input : {
 }
 ```
 
-
+</br>
 
  `capabilityDelegation` 항목을 삭제할 경우,  `rmdelegator` 액션을 사용합니다.
 
@@ -633,7 +631,7 @@ input : {
 }
 ```
 
-
+</br>
 
  `capabiltiyInvocation` 항목을 삭제할 경우,  `rminvocator` 액션을 사용합니다.
 
@@ -663,7 +661,7 @@ input : {
 }
 ```
 
-
+</br>
 
  `service` 항목을 삭제할 경우,  `rmservice` 액션을 사용합니다.
 
