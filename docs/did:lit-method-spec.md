@@ -30,15 +30,11 @@ LIT DID Method spec은 Ledgis DID체인에서 동작하는 탈중앙 식별자 �
 
 ### 1.1 lit DID Method Name
 
-------
-
 lit DID 메소드를 식별하는 이름 문자열은 `lit` 입니다. `lit` 식별체계를 이용하는 식별자는 `did:lit`접두사로 시작해야 합니다. 접두사 뒤의 값은 나머지 아래 절에서 설명합니다.
 
 </br>
 
 ### 1.2 lit DID Format
-
-------
 
 `lit` 식별체계의 식별자는 아래의 형식으로 구성됩니다.
 
@@ -82,8 +78,6 @@ did:lit:1-9A-HJ-NP-Za-km-z]{21,22}$
 </br>
 
 ### 2.1 DID Document 예
-
-------
 
 `lit` DID Document에는 아래와 같은 속성값이 포함됩니다.
 
@@ -203,8 +197,6 @@ DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에
 
 ### 2.1 Add Permission
 
-------
-
 `did:lit` 식별자는 Ledgis DID체인의 lit 컨트랙트에 의해 관리됩니다. 
 
 SSI를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접 관리하며 DID Document등록, 수정, 삭제 모두 사용자에 의해 수행됩니다.
@@ -271,8 +263,6 @@ didtesttestc permissions:
 </br>
 
 ### 2.2 Create(Register)
-
-------
 
 DID Document를 생성하기 위해서는 lit 컨트랙트의 regdid액션을 사용합니다.
 
@@ -347,8 +337,6 @@ lit는 사용자의 SSI(Self-Sovereign Identity)를 실현하기 위해 아래�
 </br>
 
 ### 2.3 Read
-
-------
 
 누구나 DID Universal Resolver을 통해 `did:lit` 식별자를 조회할 수 있습니다.
 
@@ -457,8 +445,6 @@ output :
 </br>
 
 ### 2.4 Update
-
-------
 
 `did:lit` 식별체계에서 update는 DID Document의 속성값 각각에 대한 update액션을 제공합니다.
 
@@ -679,8 +665,6 @@ input : {
 
 ### 2.5 Deactivate
 
-------
-
 DID Document를 테이블에서 삭제(비활성화)하고자 할 경우,  `deletedid` 액션을 사용합니다.
 
 ```
@@ -781,8 +765,6 @@ input : {
 
 ### 3.2 Update VC-id Status
 
-------
-
 특정 Verifiable Credential의 상태정보를 업데이트하려면 `updatevcs` 액션을 사용합니다.
 
 ```
@@ -800,8 +782,6 @@ input : {
 
 ### 3.3 Remove VC-id Status
 
-------
-
 특정 Verifiable Credential가 폐기되었다면 블록체인에 등록된 상태 정보를 삭제하기 위해 `rmvcs` 액션을 사용합니다.
 
 ```
@@ -817,9 +797,6 @@ input : {
 
 ### 3.4 Clear VC-Status
 
-------
-
-To clear specific Verifiable Credentials info which is registerd by same user, you shoud use `clearvcs` action.
 
 동일한 사용자가 등록한 특정 Verifiable Credentials 정보를 지우려면 `clearvcs`액션을 사용해야합니다.
 
