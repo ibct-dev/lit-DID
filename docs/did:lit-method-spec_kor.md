@@ -695,7 +695,7 @@ input : {
 
 ### 2.2.5 Deactivate
 
-DID Document를 Ledgis DID체인 삭제(비활성화)하고자 할 경우,  `deletedid` 액션을 사용합니다.
+DID Document를 Ledgis DID체인에서 삭제(비활성화)하고자 할 경우,  `deletedid` 액션을 사용합니다.
 
 ```
 contract : lit
