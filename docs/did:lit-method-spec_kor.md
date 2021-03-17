@@ -2,6 +2,17 @@
 
 </br>
 
+## Introduction
+
+LEDGIS는 IBCT에서 구축한 블록체인으로 "원장"을 의미하는 LEDGER와 "수호, 방패"를 의미하는 AEGIS 두 단어의 합성어입니다.
+
+LEDGIS는 원장의 무결성을 수호하여 참여자의 신뢰와 이익을 지켜내는 것을 목표로 합니다.
+
+Ledgis DID체인은 이를 기반으로 lit 컨트랙트를 통해 개체를 투명하고 암호학적으로 신뢰성이 보장된 `did:lit`식별체계를 제공합니다.
+
+
+</br>
+
 ## Abstract
 
 Ledgis DID체인은 자기주권신원 및 검증가능한 자격증명을 위한 분산형 네트워크 시스템입니다.
@@ -205,15 +216,17 @@ SSI를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접
 
 이를 위해 `did:lit` 식별체계에서는 Ledgis DID체인의 계정, 권한 기능을 활용하였습니다. 
 
-Ledgis DID체인은 계정 기반으로 트랜잭션이 발생되며 계정 생성시, 기본적으로 owner, active권한이 계정에 매핑되어 있습니다. 
+Ledgis DID체인은 계정 기반으로 트랜잭션이 발생되며 계정 생성시, 기본적으로 owner, active권한이 계정에 매핑되어 있습니다.
 
-owner권한은 가장 높은 권한으로 스마트 컨트랙트 실행 및 계정에 할당된 권한을 변경할 수 있는 권한입니다.
+active권한은 트랜잭션 실행, 투표 등에 관한 권한을 의미합니다. 
 
-active권한은 권한 변경을 제외한 스마트 컨트랙트 실행 권한을 가지게 됩니다.
+사용자는 active권한의 자식 권한을 생성할 수 있으며 자식 권한에 대한 수정까지 수행할 수 있습니다.
 
-`did:lit` 식별체계에서는 owner, active권한이 아닌 새로운 권한(controller, delegator)을 생성하여 Ledgis DID체인에 등록되는 DID Document를 관리하고자 합니다.
+owner권한은 가장 높은 권한으로 사용자의 active권한 뿐 아니라 모든 자식 권한까지 수정할 수 있습니다.
 
-사용자의 계정에 새로운 권한을 추가하기 위해서는 updateauth, linkauth를 이용해야합니다.
+`did:lit` 식별체계에서는 active권한의 자식 권한으로 controller권한, delegator권한을 생성하여 Ledgis DID체인에 등록되는 DID Document를 관리하고자 합니다.
+
+새로운 권한을 추가하기 위해서는 updateauth, linkauth를 이용해야합니다.
 
 updateauth를 통해 `controller`, `delegator`권한을 생성합니다.
 
@@ -264,9 +277,9 @@ updateauth를 통해 `controller`, `delegator`권한을 생성합니다.
 ```
 user permissions: 
     owner        1:    1 <Owner permission public key value>
-    active       1:    1 <Active permission public key value>
-    controller   1:    1 <Controller permission public key value>
-    delegator    1:    1 <User's controller permission >
+        active       1:    1 <Active permission public key value>
+            controller   1:    1 <Controller permission public key value>
+                delegator    1:    1 <User's controller permission >
 ```
 
 </br>
@@ -276,11 +289,15 @@ user permissions:
 didtesttestc's user permission
 
 ```
-didtesttestc permissions: 
-    owner           1:    1 EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
-    active          1:    1 EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
-    controller      1:    1 EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
-    delegator       1:    1 didtesttestc@controller
+created: 2021-03-16T08:08:30.000
+permissions:
+     owner          3:    1 
+     EOS6E5Wcw8WJqGu13igZzd4YCGKpuCN7QxjAGPrAdDn7ZbsX23cP7, 1 EOS6JbyJ2fVSKt8F3QWYtczU3mJbni4EC6KTjYezmsZRvJeKX18QJ, 1 EOS7TQHjDHea56GyLYfRy7SfBypm27K5wrC9tLrNvTpFK8U4GH5hc, 1 EOS7c4p2jkWbmkG415RrhukK26PyJhXfhozLwAdSYgzvQwbkUsEY8, 1 EOS8Zwn1my4KusbBLwZue2g4rtm1HcSz7rm8jiSxoW8XFwv7kwMzZ
+        active      2:    1 
+        EOS5KGrXBQyhSKmxqiZhpgJdZvScAapVNuDf1GHqL3AkVWSvyEf2g, 1 EOS72jo9wE3DKMXy16CNEkRQtfAmqknJUp6JkiKSuwWheFUxjGpNw, 1 EOS7efW6w6b1WKftgZMdsTwwsD9TUuxn6WaVWrQHY5oFKpza5r1k9
+           controller       1:    1 
+           EOS6ZtXCkzDAf73t6qtq881hFZUUiwhBdP8pbbzhpNyMVBxrftDm7, 1 EOS75W5Gm4aK4LzBjn2uBxM4k56YEC9deboxKyB1g3xvjG7UL1KUP
+              delegator     1:    1 didtesttest1@controller
 ```
 
 </br>
@@ -289,7 +306,7 @@ didtesttestc permissions:
 
 DID Document를 생성하기 위해서는 lit 컨트랙트의 regdid액션을 사용합니다.
 
-regdid액션 실행 결과는 Ledgis DID체인의 테이블 구조에 저장되는 실제 값입니다.
+regdid액션 실행 결과는 Ledgis DID체인에 저장되는 실제 값입니다.
 
 상호 호환성을 위해 DID Document read작업의 결과는 W3C의 포맷에 맞게 변환하여 반환합니다.
 
@@ -366,7 +383,7 @@ output: {DID Document}
 예시:
 
 ```json
-input: did:lit:X91iGEUwpjraFUoMArHqsZ#15
+input: did:lit:X91iGEUwpjraFUoMArHqsZ
 output : 
 {
     "@context": "https://w3id.org/did/v1",
@@ -678,7 +695,7 @@ input : {
 
 ### 2.2.5 Deactivate
 
-DID Document를 테이블에서 삭제(비활성화)하고자 할 경우,  `deletedid` 액션을 사용합니다.
+DID Document를 Ledgis DID체인 삭제(비활성화)하고자 할 경우,  `deletedid` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -852,7 +869,7 @@ Ledgis DID체인은 사용자 프라이버시를 고려하여 PII(Personally-Ide
 
 ## References
 
-[1]. IBCT, [ibct.kr](http://ibct.kr)
+[1] IBCT, [ibct.kr](http://ibct.kr)
 
 [2] Decentralized Identifiers (DIDs) v1.0, https://www.w3.org/TR/did-core/
 
