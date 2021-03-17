@@ -763,7 +763,6 @@ input : {
 
 ### 3.1 Register VC-id Status
 
-------
 
 특정 Verifiable Credential의 상태정보를 등록하려면 `regvcs` 액션을 사용합니다.
 
