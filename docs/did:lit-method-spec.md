@@ -250,10 +250,10 @@ updateauth를 통해 `controller`, `delegator`권한을 생성합니다. 그리�
 
 ```
 user permissions: 
-		owner     		1:    1 <Owner permission public key value>
-		active     		1:    1 <Active permission public key value>
-		controller    1:    1 <Controller permission public key value>
-		delegator     1:    1 <User's controller permission >
+    owner        1:    1 <Owner permission public key value>
+    active       1:    1 <Active permission public key value>
+    controller   1:    1 <Controller permission public key value>
+    delegator    1:    1 <User's controller permission >
 ```
 
 </br>
@@ -264,10 +264,10 @@ didtesttestc's user permission
 
 ```
 didtesttestc permissions: 
-		owner     		1:    1 EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
-		active     		1:    1 EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
-		controller    1:    1 EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
-		delegator     1:    1 didtesttestc@controller
+    owner           1:    1 EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
+    active          1:    1 EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
+    controller      1:    1 EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
+    delegator       1:    1 didtesttestc@controller
 ```
 
 </br>
@@ -298,17 +298,17 @@ lit는 사용자의 SSI(Self-Sovereign Identity)를 실현하기 위해 아래�
 
 아래는 regdid액션에 입력할 파라미터에 대한 설명입니다.
 
-```json
+```
 {
-  		controller: <User Account>,
-		  uuid : <lit did Identifier>,
- 			service : [{Service info DID subject is using}]
-			verificationMethod: [{List of VerificationMethod}],
-			authentication: [{PublicKey Value and Public Key Controller}],
-			assertionMethod: [{PublicKey Value and Public Key Controller}],
-			keyAgreement: [{PublicKey Value and Public Key Controller}],
-			capabilityInvocation: [{PublicKey Value and Public Key Controller}],
-			capabilityDelegation: [{PublicKey Value and Public Key Controller}]
+    controller: <User Account>,
+    uuid : <lit did Identifier>,
+    service : [{Service info DID subject is using}]
+    verificationMethod: [{List of VerificationMethod}],
+    authentication: [{PublicKey Value and Public Key Controller}],
+    assertionMethod: [{PublicKey Value and Public Key Controller},
+    keyAgreement: [{PublicKey Value and Public Key Controller}],
+    capabilityInvocation: [{PublicKey Value and Public KeyController},
+    capabilityDelegation: [{PublicKey Value and Public KeyController}]
 }
 ```
 
