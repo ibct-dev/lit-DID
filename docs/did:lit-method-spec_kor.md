@@ -17,7 +17,7 @@ Ledgis DID체인은 이를 기반으로 lit 컨트랙트를 통해 개체를 투
 
 Ledgis DID체인은 자기주권신원 및 검증가능한 자격증명을 위한 분산형 네트워크 시스템입니다.
 
-Ledgis DID체인은 IBCT에서 운영하며 제안하는 `lit` 식별체계를 이용해 기존의 온라인상에서의 아이덴티티 문제를 개선할 수 있을 것으로 예상됩니다.
+Ledgis DID체인은 IBCT에서 운영하며 제안하는 `did:lit` 식별체계를 이용해 기존의 온라인상에서의 아이덴티티 문제를 개선할 수 있을 것으로 예상됩니다.
 
 LIT DID Method spec은 Ledgis DID체인에서 동작하는 탈중앙 식별자 및 자격증명 상태 정보 관리에 대한 내용을 담고있습니다.
 
@@ -33,21 +33,21 @@ LIT DID Method spec은 Ledgis DID체인에서 동작하는 탈중앙 식별자 �
 
 
 
-`lit` 식별체계의 lit는 LEDGIS identity transformation의 약어로, 중앙기관 없이 사람, 조직 또는 장치를 고유하게 식별하는 방법을 제공하기 위해 개발된 탈중앙화된 식별체계입니다. 
+`did:lit` 식별체계의 lit는 LEDGIS identity transformation의 약어로, 중앙기관 없이 사람, 조직 또는 장치를 고유하게 식별하는 방법을 제공하기 위해 개발된 탈중앙화된 식별체계입니다. 
 
-`lit` DID Method는 W3C 표준을 따릅니다. 이 문서에서는 `lit` 식별 DID 및 DID Document의 생성, 업데이트, 취소 방법 및 Verifiable Credential의 상태 정보 관리에 방안 대해 정의합니다. 
+`did:lit` 식별체계는 DID Method는 W3C 표준을 따릅니다. 이 문서에서는 `lit` 식별 DID 및 DID Document의 생성, 업데이트, 취소 방법 및 Verifiable Credential의 상태 정보 관리에 방안 대해 정의합니다. 
 
 </br>
 
 ### 1.1 lit DID Method Name
 
-lit DID 메소드를 식별하는 이름 문자열은 `lit` 입니다. `lit` 식별체계를 이용하는 식별자는 `did:lit`접두사로 시작해야 합니다. 접두사 뒤의 값은 나머지 아래 절에서 설명합니다.
+lit DID 메소드를 식별하는 이름 문자열은 `lit` 입니다. `did:lit` 식별체계를 이용하는 식별자는 `did:lit`접두사로 시작해야 합니다. 접두사 뒤의 값은 나머지 아래 절에서 설명합니다.
 
 </br>
 
 ### 1.2 lit DID Format
 
-`lit` 식별체계의 식별자는 아래의 형식으로 구성됩니다.
+`did:lit` 식별체계의 식별자는 아래의 형식으로 구성됩니다.
 
 ```json
 lit-did = "did:lit" + lit-identifier
@@ -710,7 +710,7 @@ input : {
 
 ## 3. VC Management
 
-`lit` 식별체계는 DID Method뿐 아니라 Verifiable Credential의 상태 정보를 관리하는 기능을 제공합니다.
+`did:lit` 식별체계는 DID Method뿐 아니라 Verifiable Credential의 상태 정보를 관리하는 기능을 제공합니다.
 
 모든 Verifiable Credential에는 고유한 ID가 있습니다. 그리고 모든 Verifiable Credential에는 상태 정보가 있습니다. 이를 관리하기 위해 Ledgis DID체인에서는 Verifiable Credential의 상태 정보 관리 방안을 제공하기로 했습니다. Verifiable Credential의 상태 정보는 유효, 중지, 폐기 등이 있을 수 있습니다. 아래는 Verifiable Credential에 대한 예시입니다.
 
@@ -842,13 +842,11 @@ input : {
 
 ## 4. Security Considerations
 
-`lit` 식별체계는 완전한 SSI를 실현하기 위해 설계되었습니다.
+`did:lit` 식별체계는 완전한 SSI를 실현하기 위해 설계되었습니다.
 
-Ledgis체인에 등록되는 DID Document는 사용자 키 정보, lit identifier값, 사용자의 Ledgis DID체인 계정을 이용해서 생성됩니다.
+DID Document의 접근 통제를 위해 사용자 Ledgis DID체인 계정에 새로운 controller권한, delegator권한을 추가하였습니다.
 
-DID Document의 접근 통제를 위해 사용자 Ledgis DID체인 계정에 새로운 controller권한, delegator권한을 추가하였습니다. 
-
-Ledgis DID체인에 등록된 DID Document controller값의 계정을 확인하고, 해당 계정에 controller권한이 있는지 확인합니다.
+DID Document에 대한 CRUD작업을 하기 위해서 `did:lit` 식별체계는 Ledgis DID체인에 등록된 DID Document controller값의 계정을 확인하고, 해당 계정에 controller권한이 있는지 확인합니다.
 
 해당 권한이 있는 사용자 계정만 DID Document를 수정할 수 있도록 설계하였습니다.
 
