@@ -199,11 +199,11 @@ DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에
 
 ### 2.1 Add Permission
 
-`did:lit` 식별자는 Ledgis DID체인의 lit 컨트랙트에 의해 관리됩니다. 
+`did:lit` 식별자는 Ledgis DID체인의 lit 컨트랙트에 의해 관리됩니다.
 
-SSI를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접 관리하며 DID Document등록, 수정, 삭제 모두 사용자에 의해 수행됩니다.
+SSI를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접 관리하며 DID Document등록, 수정, 삭제 모두 사용자에 의해 직접 수행됩니다.
 
-이는 사용자 계정에 새로운 `controller`권한과 `delegator`권한을 추가해야 가능합니다.
+이를 위해 `did:lit` 식별체계에서는 Ledgis DID체인의 계정, 권한 기능을 활용하였습니다. 
 
 Ledgis DID체인은 계정 기반으로 트랜잭션이 발생되며 계정 생성시, 기본적으로 owner, active권한이 계정에 매핑되어 있습니다. 
 
@@ -215,7 +215,7 @@ active권한은 권한 변경을 제외한 스마트 컨트랙트 실행 권한�
 
 사용자의 계정에 새로운 권한을 추가하기 위해서는 updateauth, linkauth를 이용해야합니다.
 
-updateauth를 통해 `controller`, `delegator`권한을 생성합니다. 
+updateauth를 통해 `controller`, `delegator`권한을 생성합니다.
 
 그리고 linkauth를 통해 lit 컨트랙트 액션을 권한에 링크하여 해당 권한으로 링크된 액션을 실행할 수 있게 설정합니다.
 
