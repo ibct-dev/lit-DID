@@ -100,7 +100,7 @@ did:lit:1-9A-HJ-NP-Za-km-z]{21,22}$
 ```json
 {
     "@context": "https://w3id.org/did/v1",
-    "did": "did:lit:X91iGEUwpjraFUoMArHqsZ",
+    "id": "did:lit:X91iGEUwpjraFUoMArHqsZ",
     "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
     "authentication": [
         "did:lit:X91iGEUwpjraFUoMArHqsZ#10",
@@ -205,11 +205,21 @@ SSI를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접
 
 이는 사용자 계정에 새로운 `controller`권한과 `delegator`권한을 추가해야 가능합니다.
 
+Ledgis DID체인은 계정 기반으로 트랜잭션이 발생되며 계정 생성시, 기본적으로 owner, active권한이 계정에 매핑되어 있습니다. 
+
+owner권한은 가장 높은 권한으로 스마트 컨트랙트 실행 및 계정에 할당된 권한을 변경할 수 있는 권한입니다.
+
+active권한은 권한 변경을 제외한 스마트 컨트랙트 실행 권한을 가지게 됩니다.
+
+`did:lit` 식별체계에서는 owner, active권한이 아닌 새로운 권한(controller, delegator)을 생성하여 Ledgis DID체인에 등록되는 DID Document를 관리하고자 합니다.
+
 사용자의 계정에 새로운 권한을 추가하기 위해서는 updateauth, linkauth를 이용해야합니다.
 
-updateauth를 통해 `controller`, `delegator`권한을 생성합니다. 그리고 linkauth를 통해 각 권한에 lit 컨트랙트의 액션을 매핑합니다.
+updateauth를 통해 `controller`, `delegator`권한을 생성합니다. 
 
-아래는 매핑해야할 lit 컨트랙트의 액션 목록입니다.
+그리고 linkauth를 통해 lit 컨트랙트 액션을 권한에 링크하여 해당 권한으로 링크된 액션을 실행할 수 있게 설정합니다.
+
+아래는 controller권한에 매핑해야할 lit 컨트랙트의 액션 목록입니다.
 
 ```json
 [
@@ -233,6 +243,17 @@ updateauth를 통해 `controller`, `delegator`권한을 생성합니다. 그리�
     "rmvcs", 
     "updatekeys",
     "updatevcs", 
+];
+```
+
+</br>
+
+아래는 delegator권한에 매핑해야할 lit 컨트랙트의 액션 목록입니다.
+
+```json
+[
+    "addinvocator"
+    "rminvocator"
 ];
 ```
 
@@ -268,21 +289,11 @@ didtesttestc permissions:
 
 DID Document를 생성하기 위해서는 lit 컨트랙트의 regdid액션을 사용합니다.
 
-`did:lit` 식별체계는 Ledgis DID체인의 자원 문제와 사용자의 SSI를 고려하여 설계하였으며 그에 맞게 최적화하였습니다.
-
 regdid액션 실행 결과는 Ledgis DID체인의 테이블 구조에 저장되는 실제 값입니다.
 
 상호 호환성을 위해 DID Document read작업의 결과는 W3C의 포맷에 맞게 변환하여 반환합니다.
 
 create작업의 결과와 read작업의 결과를 비교해보세요.
-
-
-
-lit는 사용자의 SSI(Self-Sovereign Identity)를 실현하기 위해 아래의 속성값을 테이블에 에 등록합니다.
-
-- controller: DID Document 수정 권한이 있는 사용자의 Ledgis DID체인 계정명
-- verificatoinMethod.controller : 사용자의 `did:lit` 식별자값의 BigInt() 형 변환, 즉 verificationMethod를 제어하는 did값
-- verificationRelationship.uuid : 사용자의 lit identifier 값의 BigInt() 형변환, 즉 verificationRelationship를 제어하는 did값
 
 </br>
 
@@ -454,7 +465,7 @@ output :
 
 ### controller 
 
- `controller` 을 업데이트할 경우,  `changectrl` 액션을 사용합니다.
+ `controller` 을 수정할 경우,  `changectrl` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -470,7 +481,7 @@ input : {
 
 ### verificationMethod
 
- `verificationMethod` 을 업데이트할 경우,  `updatekeys` 액션을 사용합니다.
+ `verificationMethod` 을 수정할 경우,  `updatekeys` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -486,7 +497,7 @@ input : {
 
 ### authentication
 
- `authentication` 을 업데이트할 경우,  `addauth` 액션을 사용합니다.
+ `authentication` 항목을 추가할 경우, `addauth` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -516,7 +527,7 @@ input : {
 
 ### assertionMethod
 
- `assertionMethod` 을 업데이트할 경우,  `addasserter` 액션을 사용합니다.
+ `assertionMethod` 항목을 추가할 경우,  `addasserter` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -546,7 +557,7 @@ input : {
 
 ### keyagreement
 
- `keyAgreement` 을 업데이트할 경우,  `addkeyagrm` 액션을 사용합니다.
+ `keyAgreement` 항목을 추가할 경우,  `addkeyagrm` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -576,7 +587,7 @@ input : {
 
 #### capabilityDelegation
 
-`capabilityDelegation` 을 업데이트할 경우,  `adddelegator` 액션을 사용합니다.
+`capabilityDelegation` 항목을 추가할 경우,  `adddelegator` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -606,7 +617,7 @@ input : {
 
 #### capabiltiyInvocation
 
-`capabiltiyInvocation` 을 업데이트할 경우,  `addinvocator` 액션을 사용합니다.
+`capabiltiyInvocation` 항목을 추가할 경우,  `addinvocator` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -638,7 +649,7 @@ input : {
 
 #### service
 
-`service` 을 업데이트할 경우,  `addservice` 액션을 사용합니다.
+`service` 항목을 추가할 경우,  `addservice` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -767,7 +778,7 @@ input : {
 
 ### 3.2 Update VC-id Status
 
-특정 Verifiable Credential의 상태정보를 업데이트하려면 `updatevcs` 액션을 사용합니다.
+특정 Verifiable Credential의 상태정보를 수정하려면 `updatevcs` 액션을 사용합니다.
 
 ```
 contract : lit
