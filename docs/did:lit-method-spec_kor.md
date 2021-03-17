@@ -846,7 +846,7 @@ input : {
 
 DID Document의 접근 통제를 위해 사용자 Ledgis DID체인 계정에 새로운 controller권한, delegator권한을 추가하였습니다.
 
-DID Document에 대한 CRUD작업을 하기 위해서 `did:lit` 식별체계는 Ledgis DID체인에 등록된 DID Document controller값의 계정을 확인하고, 해당 계정에 controller권한이 있는지 확인합니다.
+`did:lit` 식별체계에서 DID Document에 대한 CRUD작업은 DID Document controller값의 계정을 확인하고, 해당 계정에 controller권한이 있는지 확인합니다.
 
 해당 권한이 있는 사용자 계정만 DID Document를 수정할 수 있도록 설계하였습니다.
 
