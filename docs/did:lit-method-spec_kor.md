@@ -51,12 +51,12 @@ lit DID 메소드를 식별하는 이름 문자열은 `lit` 입니다. `did:lit`
 
 ```json
 lit-did = "did:lit" + lit-identifier
-lit-identifier = 21 * 22 (base58char)
-base58char = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" / "A" / "B" / "C"
-    / "D" / "E" / "F" / "G" / "H" / "J" / "K" / "L" / "M" / "N" / "P" / "Q"
-    / "R" / "S" / "T" / "U" / "V" / "W" / "X" / "Y" / "Z" / "a" / "b" / "c"
-    / "d" / "e" / "f" / "g" / "h" / "i" / "j" / "k" / "m" / "n" / "o" / "p"
-    / "q" / "r" / "s" / "t" / "u" / "v" / "w" / "x" / "y" / "z"
+lit-identifier = 21, 22 (base58char)
+base58char = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" / "A" /"B" / "C"
+            / "D" / "E" / "F" / "G" / "H" / "J" / "K" / "L" / "M" / "N" / "P" / "Q"
+            / "R" / "S" / "T" / "U" / "V" / "W" / "X" / "Y" / "Z" / "a" / "b" / "c"
+            / "d" / "e" / "f" / "g" / "h" / "i" / "j" / "k" / "m" / "n" / "o" / "p"
+            / "q" / "r" / "s" / "t" / "u" / "v" / "w" / "x" / "y" / "z"
 ```
 
 </br>
@@ -65,24 +65,26 @@ base58char = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" / "A" / "B" / "
 
 `did:lit` 식별자는 아래의 규칙에 따라 정의됩니다. 모든 `did:lit` 식별자는 16바이트의 uuid 알파벳을 base58로 인코딩하여 사용합니다. 0, O, I, l 문자에 대한 가독성 문제를 피하기 위해 base58을 사용합니다.
 
-lit-identifier 정규 표현식은 아래와 같습니다.
+</br>
+
+lit 식별자값 정규 표현식은 아래와 같습니다 
+```
+^[1-9A-HJ-NP-Za-km-z]{21,22}$
+```
+
+
+</br>
+
+did를 포함한 lit DID 식별자의 정규 표현식은 아래와 같습니다.
 
 ```
-[1-9A-HJ-NP-Za-km-z]{21,22}$
+^(did:lit:(?:[1-9A-HJ-NP-Za-km-z]{21,22}))$
 ```
 
 </br>
 
-lit DID 식별자의 정규 표현식은 아래와 같습니다.
 
-```
-did:lit:1-9A-HJ-NP-Za-km-z]{21,22}$
-```
-
-</br>
-
-
-유효한 `did:lit` 식별자 DID는 did:lit:X91iGEUwpjraFUoMArHqsZ 같을 수 있습니다.
+유효한 `did:lit` 식별자 DID는 did:lit:AEZ87t1bi5bRxmVh3ksMUi 같을 수 있습니다.
 
 </br></br>
 
@@ -110,88 +112,79 @@ did:lit:1-9A-HJ-NP-Za-km-z]{21,22}$
 
 ```json
 {
-    "@context": "https://w3id.org/did/v1",
-    "id": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-    "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-    "authentication": [
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#10",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#11",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#12",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#13",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#14",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#15",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#16",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#17",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#18",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#19"
-    ],
-    "assertionMethod": ["did:lit:X91iGEUwpjraFUoMArHqsZ#10"],
-    "capabilityInvocation": [],
-    "capabilityDelegation": [],
-    "keyAgreement": [],
-    "verificationMethod": [
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#10",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "269JzKmDo3DpaoVbnrd5PPthffo82NhvLNSwCRr5kxSkv"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#11",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "2AqvxwvNdw8JUn8Waa9vnNVDX5wgPQrQi7Yk6fR51b4XP"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#12",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "dmm4b6QniiJmv4LyNtyNXXeJymUCUTMNqtSF4uYSYg4n"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#13",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "sLvfD1zvyHm6FX4gqdgMCneVqJ3dSy59HvJzPZoZryZK"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#14",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "25cRC6XkQGLMcW5aVzeJR2EqNte72cwDFmxkaDYgwmekB"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#15",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "vp6yrPD7mpy7EoZuoNRVDcgikt1T7DvmDVH6Cehn4e1f"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#16",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "2BC6g8v56FcApM7cTRAgnYScyhEhPe1kGuEwnSCAmXCrU"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#17",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "sVzieURLMagvrwghtAKyaLDqgm2SYyoCbqFYx99fAxXJ"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#18",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "ykj4PaAhqYCZMwUvKD3F8v1Z8WTMrvGB5NeMp5v2FmK2"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#19",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "zpTJ3agmRef23zVinpRDHTYu5PhacCpUB9aXmLEYrn4q"
-        }
-    ],
-    "service": []
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+  "controller": "didtesttest1",
+  "service": [],
+  "authentication": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#0"],
+  "assertionMethod": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#1"],
+  "keyAgreement": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#2"],
+  "capabilityInvocation": [],
+  "capabilityDelegation": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#3"],
+  "verificationMethod": [
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#0",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "zbPJfARDmbshQ2iSZ3fg5WxAh9VEXAoiyi6QRBJBBj2z"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#1",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "24YpP4L2ydSffMn92KF1EvzgwcStdzixut1CDizuCpaqD"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#2",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "277hEJxdh596ptwNmyApNTa1TZLMjgpEeQgXbTbXGYns1"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#3",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "foWWHmUrwxXFu12aEoS4GK9MdqVNTKLbpGEF9ND7wEvH"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#4",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "qVFze1eaPJavKvmGqEsF4LPRdUDzsvFukqQH5KVhseE1"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#5",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "29NGo9CDpMcVWhTp1XKNse63DVzgHUHiQpWv1bQMXj7Wx"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#6",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "nnvBVyLX77f39KwNrsUhkdvjWCVXt4o71U6DBbZSbDZA"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#7",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "nESzTFNwQfdar2v4aHPKeYZA6fobDfdYsssFV8ZBzRTZ"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#8",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "sZzPChJYcibqcvr7nvHJHyVUtACKoNyRarsppdwMJvGN"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#9",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "z2SqWSUz92ULURxmr254RWbg3UdFLwRSLQctuwHHxbWy"
+    }
+  ],
+  "createdAt": "2021-03-17T07:05:14+00:00",
+  "updatedAt": "2021-03-17T07:05:14+00:00"
 }
 
 ```
@@ -218,11 +211,11 @@ SSI를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접
 
 Ledgis DID체인은 계정 기반으로 트랜잭션이 발생되며 계정 생성시, 기본적으로 owner, active권한이 계정에 매핑되어 있습니다.
 
-active권한은 트랜잭션 실행, 투표 등에 관한 권한을 의미합니다. 
+active권한은 트랜잭션 실행에 관한 권한을 의미합니다. 
 
 사용자는 active권한의 자식 권한을 생성할 수 있으며 자식 권한에 대한 수정까지 수행할 수 있습니다.
 
-owner권한은 가장 높은 권한으로 사용자의 active권한 뿐 아니라 모든 자식 권한까지 수정할 수 있습니다.
+owner권한은 가장 높은 권한으로, owner권한를 포함한 active권한, 자식권한까지 모든 권한 제어가 가능합니다.
 
 `did:lit` 식별체계에서는 active권한의 자식 권한으로 controller권한, delegator권한을 생성하여 Ledgis DID체인에 등록되는 DID Document를 관리하고자 합니다.
 
@@ -286,7 +279,7 @@ user permissions:
 
 예시:
 
-didtesttestc's user permission
+didtesttest1 user permission
 
 ```
 created: 2021-03-16T08:08:30.000
@@ -383,90 +376,82 @@ output: {DID Document}
 예시:
 
 ```json
-input: did:lit:X91iGEUwpjraFUoMArHqsZ
+input: did:lit:AEZ87t1bi5bRxmVh3ksMUi
 output : 
 {
-    "@context": "https://w3id.org/did/v1",
-    "id": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-    "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-    "authentication": [
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#10",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#11",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#12",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#13",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#14",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#15",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#16",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#17",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#18",
-        "did:lit:X91iGEUwpjraFUoMArHqsZ#19"
-    ],
-    "assertionMethod": ["did:lit:X91iGEUwpjraFUoMArHqsZ#10"],
-    "capabilityInvocation": [],
-    "capabilityDelegation": [],
-    "keyAgreement": [],
-    "verificationMethod": [
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#10",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "269JzKmDo3DpaoVbnrd5PPthffo82NhvLNSwCRr5kxSkv"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#11",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "2AqvxwvNdw8JUn8Waa9vnNVDX5wgPQrQi7Yk6fR51b4XP"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#12",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "dmm4b6QniiJmv4LyNtyNXXeJymUCUTMNqtSF4uYSYg4n"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#13",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "sLvfD1zvyHm6FX4gqdgMCneVqJ3dSy59HvJzPZoZryZK"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#14",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "25cRC6XkQGLMcW5aVzeJR2EqNte72cwDFmxkaDYgwmekB"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#15",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "vp6yrPD7mpy7EoZuoNRVDcgikt1T7DvmDVH6Cehn4e1f"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#16",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "2BC6g8v56FcApM7cTRAgnYScyhEhPe1kGuEwnSCAmXCrU"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#17",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "sVzieURLMagvrwghtAKyaLDqgm2SYyoCbqFYx99fAxXJ"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#18",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "ykj4PaAhqYCZMwUvKD3F8v1Z8WTMrvGB5NeMp5v2FmK2"
-        },
-        {
-            "id": "did:lit:X91iGEUwpjraFUoMArHqsZ#19",
-            "type": "Secp256k1VerificationKey2018",
-            "controller": "did:lit:X91iGEUwpjraFUoMArHqsZ",
-            "publicKeyBase58": "zpTJ3agmRef23zVinpRDHTYu5PhacCpUB9aXmLEYrn4q"
-        }
-    ]
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+  "controller": "didtesttest1",
+  "service": [],
+  "authentication": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#0"],
+  "assertionMethod": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#1"],
+  "keyAgreement": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#2"],
+  "capabilityInvocation": [],
+  "capabilityDelegation": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#3"],
+  "verificationMethod": [
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#0",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "zbPJfARDmbshQ2iSZ3fg5WxAh9VEXAoiyi6QRBJBBj2z"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#1",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "24YpP4L2ydSffMn92KF1EvzgwcStdzixut1CDizuCpaqD"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#2",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "277hEJxdh596ptwNmyApNTa1TZLMjgpEeQgXbTbXGYns1"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#3",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "foWWHmUrwxXFu12aEoS4GK9MdqVNTKLbpGEF9ND7wEvH"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#4",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "qVFze1eaPJavKvmGqEsF4LPRdUDzsvFukqQH5KVhseE1"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#5",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "29NGo9CDpMcVWhTp1XKNse63DVzgHUHiQpWv1bQMXj7Wx"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#6",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "nnvBVyLX77f39KwNrsUhkdvjWCVXt4o71U6DBbZSbDZA"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#7",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "nESzTFNwQfdar2v4aHPKeYZA6fobDfdYsssFV8ZBzRTZ"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#8",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "sZzPChJYcibqcvr7nvHJHyVUtACKoNyRarsppdwMJvGN"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#9",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "z2SqWSUz92ULURxmr254RWbg3UdFLwRSLQctuwHHxbWy"
+    }
+  ],
+  "createdAt": "2021-03-17T07:05:14+00:00",
+  "updatedAt": "2021-03-17T07:05:14+00:00"
 }
 ```
 
