@@ -197,7 +197,7 @@ DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에
 
 </br>
 
-### 2.1 Add Permission
+### 2.2.1 Add Permission
 
 `did:lit` 식별자는 Ledgis DID체인의 lit 컨트랙트에 의해 관리됩니다.
 
@@ -285,7 +285,7 @@ didtesttestc permissions:
 
 </br>
 
-### 2.2 Create(Register)
+### 2.2.2 Create(Register)
 
 DID Document를 생성하기 위해서는 lit 컨트랙트의 regdid액션을 사용합니다.
 
@@ -349,7 +349,7 @@ create작업의 결과와 read작업의 결과를 비교해보세요.
 
 </br>
 
-### 2.3 Read
+### 2.2.3 Read
 
 누구나 DID Universal Resolver을 통해 `did:lit` 식별자를 조회할 수 있습니다.
 
@@ -457,7 +457,7 @@ output :
 
 </br>
 
-### 2.4 Update
+### 2.2.4 Update
 
 `did:lit` 식별체계에서 update는 DID Document의 속성값 각각에 대한 update액션을 제공합니다.
 
@@ -676,7 +676,7 @@ input : {
 
 </br>
 
-### 2.5 Deactivate
+### 2.2.5 Deactivate
 
 DID Document를 테이블에서 삭제(비활성화)하고자 할 경우,  `deletedid` 액션을 사용합니다.
 
