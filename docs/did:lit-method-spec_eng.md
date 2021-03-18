@@ -341,7 +341,7 @@ Below is the parameters for regdid action.
     authentication: [{PublicKey Value and Public Key Controller}],
     assertionMethod: [{PublicKey Value and Public Key Controller},
     keyAgreement: [{PublicKey Value and Public Key Controller}],
-    capabilityInvocation: [{PublicKey Value and Public KeyController},
+    capabilityInvocation: [{PublicKey Value and Public KeyController}],
     capabilityDelegation: [{PublicKey Value and Public KeyController}]
 }
 ```
@@ -857,7 +857,7 @@ input : {
 
 ## 4. Security Considerations
 
-The `did:lit` identification system is designed to acheive full SSI(self sovereign identity).
+The `did:lit` identification system is designed to acheive full SSI(Self Sovereign Identity).
 
 In order to control DID Documents, new permissions(controller, delegator) have been added to the user's Ledgis DID chain account.
 

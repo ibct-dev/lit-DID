@@ -320,7 +320,7 @@ create작업의 결과와 read작업의 결과를 비교해보세요.
     authentication: [{PublicKey Value and Public Key Controller}],
     assertionMethod: [{PublicKey Value and Public Key Controller},
     keyAgreement: [{PublicKey Value and Public Key Controller}],
-    capabilityInvocation: [{PublicKey Value and Public KeyController},
+    capabilityInvocation: [{PublicKey Value and Public KeyController}],
     capabilityDelegation: [{PublicKey Value and Public KeyController}]
 }
 ```
