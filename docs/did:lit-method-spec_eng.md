@@ -103,7 +103,7 @@ A valid did DID might be `did:lit:AEZ87t1bi5bRxmVh3ksMUi`.
 
 </br>
 
-### 2.1 DID Document 예시
+### 2.1 DID Document
 
 The `did:lit` DID Document contains the following property values:
 
@@ -719,11 +719,6 @@ input : {
 </br></br>
 
 ## 3. VC Management
-
-`did:lit` 식별체계는 DID Method뿐 아니라 Verifiable Credential의 상태 정보를 관리하는 기능을 제공합니다.
-
-모든 Verifiable Credential에는 고유한 ID가 있습니다. 그리고 모든 Verifiable Credential에는 상태 정보가 있습니다. 이를 관리하기 위해 Ledgis DID체인에서는 Verifiable Credential의 상태 정보 관리 방안을 제공하기로 했습니다. Verifiable Credential의 상태 정보는 유효, 중지, 폐기 등이 있을 수 있습니다. 아래는 Verifiable Credential에 대한 예시입니다.
-
 
 Lit did method provides a function to manage status information of "Verifiable Credential" as well as "did method".
 
