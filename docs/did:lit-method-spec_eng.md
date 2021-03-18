@@ -339,7 +339,7 @@ Below is the parameters for regdid action.
     service : [{Service info DID subject is using}]
     verificationMethod: [{List of VerificationMethod}],
     authentication: [{PublicKey Value and Public Key Controller}],
-    assertionMethod: [{PublicKey Value and Public Key Controller},
+    assertionMethod: [{PublicKey Value and Public Key Controller}],
     keyAgreement: [{PublicKey Value and Public Key Controller}],
     capabilityInvocation: [{PublicKey Value and Public KeyController}],
     capabilityDelegation: [{PublicKey Value and Public KeyController}]
