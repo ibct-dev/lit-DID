@@ -201,7 +201,7 @@ DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에
 
 ### 2.2.1 Add Permission
 
-`did:lit` 식별자는 Ledgis DID체인의 lit 컨트랙트에 의해 관리됩니다.
+`did:lit` 식별자는 Ledgis DID체인의 lit 컨트랙트에 의해 관리됩니다. 
 
 SSI(Self Sovereign Identity)를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접 관리하며 DID Document등록, 수정, 삭제 모두 사용자에 의해 직접 수행됩니다.
 
