@@ -193,7 +193,7 @@ did를 포함한 lit DID 식별자의 정규 표현식은 아래와 같습니다
 
 DID method 명세에는 lit 컨트랙트를 통해 CRUD(Create, Read, Update, Delete)할 수 있는 데이터에 대해 소개하고 작업 과정에 대해 설명합니다.
 
-DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에 대해 소개하고자 합니다.
+DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에 대해 소개합니다.
 
 아래에 각 정보의 CRUD방법에 대한 설명입니다.
 
@@ -205,7 +205,7 @@ DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에
 
 SSI(Self Sovereign Identity)를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접 관리하며 DID Document등록, 수정, 삭제 모두 사용자에 의해 직접 수행됩니다.
 
-이를 위해 `did:lit` 식별체계에서는 Ledgis DID체인의 계정, 권한 기능을 활용하였습니다. 
+이를 위해 `did:lit` 식별체계에서는 Ledgis DID체인의 계정, 권한 기능을 활용하였습니다.
 
 Ledgis DID체인은 계정 기반으로 트랜잭션이 발생되며 계정 생성시, 기본적으로 owner, active권한이 계정에 매핑되어 있습니다.
 
@@ -219,7 +219,7 @@ owner, active권한은 계층적인 구조를 가지고 있지만, 구체적인 
 
 </br>
 
-`did:lit` 식별체계에서는 active권한의 자식 권한으로 controller권한, delegator권한을 생성하여 Ledgis DID체인에 등록되는 DID Document를 관리하고자 합니다.
+`did:lit` 식별체계에서는 active권한의 자식 권한으로 controller권한, delegator권한을 생성하여 Ledgis DID체인에 등록되는 DID Document를 관리합니다.
 
 새로운 권한을 추가하기 위해서는 updateauth, linkauth를 이용해야합니다.
 
