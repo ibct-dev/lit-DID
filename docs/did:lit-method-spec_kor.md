@@ -17,7 +17,7 @@ Ledgis DID체인은 이를 기반으로 lit 컨트랙트를 통해 개체를 투
 
 Ledgis DID체인은 자기주권신원 및 검증가능한 자격증명을 위한 분산형 네트워크 시스템입니다.
 
-Ledgis DID체인은 IBCT에서 운영하며 제안하는 `did:lit` 식별체계를 이용해 기존의 온라인상에서의 아이덴티티 문제를 개선할 수 있을 것으로 예상됩니다.
+Ledgis DID체인은 `did:lit` 식별체계를 이용해 기존의 온라인상에서의 아이덴티티 문제를 개선할 수 있을 것으로 예상됩니다.
 
 LIT DID Method spec은 Ledgis DID체인에서 동작하는 탈중앙 식별자 및 자격증명 상태 정보 관리에 대한 내용을 담고있습니다.
 
@@ -30,8 +30,6 @@ LIT DID Method spec은 Ledgis DID체인에서 동작하는 탈중앙 식별자 �
 </br></br>
 
 ## 1. lit DID
-
-
 
 `did:lit` 식별체계의 lit는 LEDGIS identity transformation의 약어로, 중앙기관 없이 사람, 조직 또는 장치를 고유하게 식별하는 방법을 제공하기 위해 개발된 탈중앙화된 식별체계입니다. 
 
@@ -205,17 +203,21 @@ DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에
 
 `did:lit` 식별자는 Ledgis DID체인의 lit 컨트랙트에 의해 관리됩니다.
 
-SSI를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접 관리하며 DID Document등록, 수정, 삭제 모두 사용자에 의해 직접 수행됩니다.
+SSI(Self Sovereign Identity)를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접 관리하며 DID Document등록, 수정, 삭제 모두 사용자에 의해 직접 수행됩니다.
 
 이를 위해 `did:lit` 식별체계에서는 Ledgis DID체인의 계정, 권한 기능을 활용하였습니다. 
 
 Ledgis DID체인은 계정 기반으로 트랜잭션이 발생되며 계정 생성시, 기본적으로 owner, active권한이 계정에 매핑되어 있습니다.
 
-active권한은 트랜잭션 실행에 관한 권한을 의미합니다. 
+</br>
 
-사용자는 active권한의 자식 권한을 생성할 수 있으며 자식 권한에 대한 수정까지 수행할 수 있습니다.
+owner권한은 모든 계정에 대한 권한 계층의 루트에 위치합니다. 따라서 계정에서 권한 구조 내에서 가질 수 있는 가장 높은 상대 권한입니다.
 
-owner권한은 가장 높은 권한으로, owner권한를 포함한 active권한, 자식권한까지 모든 권한 제어가 가능합니다.
+active권한은 owner권한과 관련된 키 변경을 제외하고 트랜잭션을 실행하는데 사용됩니다.
+
+owner, active권한은 계층적인 구조를 가지고 있지만, 구체적인 작업이 필요한 경우 active권한 하위에 커스텀 권한을 생성하여 특정 컨트랙트의 액션과 매핑할 수 있습니다.
+
+</br>
 
 `did:lit` 식별체계에서는 active권한의 자식 권한으로 controller권한, delegator권한을 생성하여 Ledgis DID체인에 등록되는 DID Document를 관리하고자 합니다.
 
@@ -265,7 +267,7 @@ updateauth를 통해 `controller`, `delegator`권한을 생성합니다.
 
 </br>
 
-아래는 controller, delegator권한을 추가한 계정은 아래와 같이 보여집니다.
+controller, delegator권한을 추가한 계정은 아래와 같이 보여집니다.
 
 ```
 user permissions: 
@@ -619,7 +621,7 @@ input : {
 
 #### capabiltiyInvocation
 
-`capabiltiyInvocation` 항목을 추가할 경우,  `addinvocator` 액션을 사용합니다.
+`capabiltiyInvocation` 항목을 추가할 경우, `addinvocator` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -651,7 +653,7 @@ input : {
 
 #### service
 
-`service` 항목을 추가할 경우,  `addservice` 액션을 사용합니다.
+`service` 항목을 추가할 경우, `addservice` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -664,7 +666,7 @@ input : {
 
 </br>
 
- `service` 항목을 삭제할 경우,  `rmservice` 액션을 사용합니다.
+ `service` 항목을 삭제할 경우, `rmservice` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -680,11 +682,11 @@ input : {
 
 ### 2.2.5 Deactivate
 
-DID Document를 Ledgis DID체인에서 삭제(비활성화)하고자 할 경우,  `deletedid` 액션을 사용합니다.
+DID Document를 Ledgis DID체인에서 삭제(비활성화)하고자 할 경우, `deletedid` 액션을 사용합니다.
 
 ```
 contract : lit
-action : rminvocator
+action : deletedid
 input : {
     "controller" :  <Current Controller Value of Account in DID Document>
     "uuid" : <lit did Identifier>
@@ -786,7 +788,7 @@ input : {
 contract : lit
 action : updatevcs
 input : {
-    "issuer" : <User account who is registering specific VC status info>
+    "issuer" : <User account who is updating specific VC status info>
     "vcUuid" : <Id value of Verifiable Credential>
     "vcStatus" : <Status Info of Verifiable Crednetial>
     "expiredAt": <ExpireDate of Verifiable Credential>
@@ -827,7 +829,7 @@ input : {
 
 ## 4. Security Considerations
 
-`did:lit` 식별체계는 완전한 SSI를 실현하기 위해 설계되었습니다.
+`did:lit` 식별체계는 완전한 SSI(Self Sovereign Identity)를 실현하기 위해 설계되었습니다.
 
 DID Document의 접근 통제를 위해 사용자 Ledgis DID체인 계정에 새로운 controller권한, delegator권한을 추가하였습니다.
 
@@ -841,7 +843,7 @@ DID Document의 접근 통제를 위해 사용자 Ledgis DID체인 계정에 새
 
 Ledgis DID체인은 사용자 프라이버시를 고려하여 PII(Personally-Identifiable Information)없이, DID Document정보, Verifiable Credential의 상태 정보만 등록합니다.
 
-현재 Ledgis DID체인에는 다음 데이터만 저장합니다.
+현재 Ledgis DID체인에는 아래 데이터만 저장합니다.
 
 - 개체를 식별하는데 사용되는 DID Document
 - Verifiable Credential의 유효성을 관리할 수 있는 상태정보
