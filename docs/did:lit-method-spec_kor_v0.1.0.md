@@ -1,59 +1,53 @@
-# LIT DID Method Specification
+# LIT DID Method Specification v0.1.0
+
+해당 문서는 lit DID Method 명세서 0.1.0버전입니다.
 
 </br>
 
 ## Introduction
 
-LEDGIS is a blockchain established by IBCT, which is a combination of two words: LEDGER, which means "ledger" and AEGIS, which means "protection, shield."
+LEDGIS는 IBCT에서 구축한 블록체인으로 "원장"을 의미하는 LEDGER와 "수호, 방패"를 의미하는 AEGIS 두 단어의 합성어입니다.
 
-LEDGIS aims to protect the trust and interests of user by protecting the integrity of the ledger.
+LEDGIS는 원장의 무결성을 수호하여 참여자의 신뢰와 이익을 지켜내는 것을 목표로 합니다.
 
-Based on this, Ledgis DID Chain provides a transparent and cryptographically reliable `did:lit` identification system through a lit contract.
+Ledgis DID체인은 이를 기반으로 lit 컨트랙트를 통해 개체를 투명하고 암호학적으로 신뢰성이 보장된 `did:lit`식별체계를 제공합니다.
 
 
 </br>
 
 ## Abstract
 
-Ledgis DID Chain is a decentralized network system for self-sovereign identity and verifiable credentials.
+Ledgis DID체인은 자기주권신원 및 검증가능한 자격증명을 위한 분산형 네트워크 시스템입니다.
 
-Ledgis DID Chain is expected to improve the existing online identity problem by using the `did:lit` identification system proposed by IBCT.
+Ledgis DID체인은 `did:lit` 식별체계를 이용해 기존의 온라인상에서의 아이덴티티 문제를 개선할 수 있을 것으로 예상됩니다.
 
-The LIT DID Method spec contains information about the de-central identifier and credential status management operating in the Ledgis DID chain.
+LIT DID Method spec은 Ledgis DID체인에서 동작하는 탈중앙 식별자 및 자격증명 상태 정보 관리에 대한 내용을 담고있습니다.
 
 </br>
 
 ## Status Of this document
 
-This is a draft document is based on W3C Standard and will be updated.
+이 문서는 W3C 표준을 기반으로 한 초안 문서이며 업데이트 될 예정입니다.
 
 </br></br>
 
 ## 1. lit DID
 
-LIT in the `did:lit` identification system stands for LEDGIS identity transformation.
+`did:lit` 식별체계의 lit는 LEDGIS identity transformation의 약어로, 중앙기관 없이 사람, 조직 또는 장치를 고유하게 식별하는 방법을 제공하기 위해 개발된 탈중앙화된 식별체계입니다. 
 
-Its a decentralized identification system developed to provide a method to uniquely identify a person, organization or device without a central authority.
-
-The `did:lit` identification system follows the W3C standard for the DID Method. 
-
-This document defines how to create, update, and cancel the `lit` identification DID and DID Document, and how to manage the status information of Verifiable Credential.
+`did:lit` 식별체계는 DID Method는 W3C 표준을 따릅니다. 이 문서에서는 `lit` 식별 DID 및 DID Document의 생성, 업데이트, 취소 방법 및 Verifiable Credential의 상태 정보 관리에 방안 대해 정의합니다. 
 
 </br>
 
 ### 1.1 lit DID Method Name
 
-The name string identifying the lit DID method is `lit`. 
-
-Identifiers using the `did:lit` identification scheme must start with the `did:lit` prefix. 
-
-The values after the prefix are described in the remaining sections below.
+lit DID 메소드를 식별하는 이름 문자열은 `lit` 입니다. `did:lit` 식별체계를 이용하는 식별자는 `did:lit`접두사로 시작해야 합니다. 접두사 뒤의 값은 나머지 아래 절에서 설명합니다.
 
 </br>
 
 ### 1.2 lit DID Format
 
-The identifier of the `did:lit` identification system is composed of the following format.
+`did:lit` 식별체계의 식별자는 아래의 형식으로 구성됩니다.
 
 ```json
 lit-did = "did:lit" + lit-identifier
@@ -67,16 +61,13 @@ base58char = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" / "A" /"B" / "C
 
 </br>
 
-### 1.2.1 lit-identifier
+### 1.2.1 lit-identifier 생성 방법
 
-All `did:lit` identifiers are base58 encoded with 16 bytes of uuid alphabet. 
-
-`did:lit` identifier use base58 to avoid readability issues for 0, O, I, l characters.
+`did:lit` 식별자는 아래의 규칙에 따라 정의됩니다. 모든 `did:lit` 식별자는 16바이트의 uuid 알파벳을 base58로 인코딩하여 사용합니다. 0, O, I, l 문자에 대한 가독성 문제를 피하기 위해 base58을 사용합니다.
 
 </br>
 
-A convenient regex to match `did:lit` identifier is:
-
+lit 식별자값 정규 표현식은 아래와 같습니다 
 ```
 ^[1-9A-HJ-NP-Za-km-z]{21,22}$
 ```
@@ -84,8 +75,7 @@ A convenient regex to match `did:lit` identifier is:
 
 </br>
 
-A convenient regex to match the entire `did:lit:IDENTIFIER` string is:
-
+did를 포함한 lit DID 식별자의 정규 표현식은 아래와 같습니다.
 
 ```
 ^(did:lit:(?:[1-9A-HJ-NP-Za-km-z]{21,22}))$
@@ -94,8 +84,7 @@ A convenient regex to match the entire `did:lit:IDENTIFIER` string is:
 </br>
 
 
-A valid did DID might be `did:lit:AEZ87t1bi5bRxmVh3ksMUi`.
-
+유효한 `did:lit` 식별자 DID는 did:lit:AEZ87t1bi5bRxmVh3ksMUi 같을 수 있습니다.
 
 </br></br>
 
@@ -103,9 +92,9 @@ A valid did DID might be `did:lit:AEZ87t1bi5bRxmVh3ksMUi`.
 
 </br>
 
-### 2.1 DID Document
+### 2.1 DID Document 예시
 
-The `did:lit` DID Document contains the following property values:
+`lit` DID Document에는 아래와 같은 속성값이 포함됩니다.
 
 - id
 - controller
@@ -119,7 +108,7 @@ The `did:lit` DID Document contains the following property values:
 
 </br>
 
-example
+예시.
 
 ```json
 {
@@ -204,51 +193,43 @@ example
 
 ## 2.2 CRUD Operation
 
-The DID method specification introduces the data that can be CRUD (Create, Read, Update, Delete) through the lit contract, and explains the working process.
+DID method 명세에는 lit 컨트랙트를 통해 CRUD(Create, Read, Update, Delete)할 수 있는 데이터에 대해 소개하고 작업 과정에 대해 설명합니다.
 
-In the DID method specification, we would like to introduce actions that fits the purpose of managing DID Documents.
+DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에 대해 소개합니다.
 
-Below is an explanation of how to CRUD each property.
+아래에 각 정보의 CRUD방법에 대한 설명입니다.
 
 </br>
 
 ### 2.2.1 Add Permission
 
-The `did:lit` identifier is managed by the lit contract of the Ledgis DID chain.
+`did:lit` 식별자는 Ledgis DID체인의 lit 컨트랙트에 의해 관리됩니다. 
 
-To acheive SSI(Self Sovereign Identity), the user's DID and DID document should be managed by the user.
+SSI(Self Sovereign Identity)를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접 관리하며 DID Document등록, 수정, 삭제 모두 사용자에 의해 직접 수행됩니다.
 
-DID document registration, modification, and deletion are all performed by the user.
+이를 위해 `did:lit` 식별체계에서는 Ledgis DID체인의 계정, 권한 기능을 활용하였습니다.
 
-For this purpose, the `did:lit` identification system utilized the account and permission concept of the Ledgis DID chain.
-
-The Ledgis DID chain generates account-based transactions and, by default, owner, active permissions are mapped to the account when it is created.
+Ledgis DID체인은 계정 기반으로 트랜잭션이 발생되며 계정 생성시, 기본적으로 owner, active권한이 계정에 매핑되어 있습니다.
 
 </br>
 
-An account is a human-readable name that is stored on the blockchain. An account is required to transfer or push any valid transaction to the blockchain. Every account has two default named permissions when created, owner and active.
+owner권한은 모든 계정에 대한 권한 계층의 루트에 위치합니다. 따라서 계정에서 권한 구조 내에서 가질 수 있는 가장 높은 상대 권한입니다.
 
-The owner permission sits at the root of the permission hierarchy for every account. It is therefore the highest relative permission an account can have within its permission structure. 
+active권한은 owner권한과 관련된 키 변경을 제외하고 트랜잭션을 실행하는데 사용됩니다.
 
-The active permission is typically used for executing transactions, exepct changing the keys associated with the owner.
-
-They have a parent-child relationship by default, but for more specific actions, custom permissions are typically created below the active permission and mapped to specific contracts or actions.
+owner, active권한은 계층적인 구조를 가지고 있지만, 구체적인 작업이 필요한 경우 active권한 하위에 커스텀 권한을 생성하여 특정 컨트랙트의 액션과 매핑할 수 있습니다.
 
 </br>
 
-In the `did:lit` identification system, controller and delegator permissions are created as a child of active permission.
+`did:lit` 식별체계에서는 active권한의 자식 권한으로 controller권한, delegator권한을 생성하여 Ledgis DID체인에 등록되는 DID Document를 관리합니다.
 
-Theses custom permissions are created to manage DID documents registered in the Ledgis DID chain.
+새로운 권한을 추가하기 위해서는 updateauth, linkauth를 이용해야합니다.
 
-Updateauth and linkauth must be used to add new permission.
+updateauth를 통해 `controller`, `delegator`권한을 생성합니다.
 
-Create `controller` and `delegator` permission through updateauth action.
+그리고 linkauth를 통해 lit 컨트랙트 액션을 권한에 링크하여 해당 권한으로 링크된 액션을 실행할 수 있게 설정합니다.
 
-In addition, the lit contract action is linked to the permission through linkauth action, and the linked action can be executed with that permission.
-
-And linkauth links lit contract actions to permissions to enable them to execute linked actions.
-
-Below is a list of actions that should be mapped to controller permission.
+아래는 controller권한에 매핑해야할 lit 컨트랙트의 액션 목록입니다.
 
 ```json
 [
@@ -277,7 +258,7 @@ Below is a list of actions that should be mapped to controller permission.
 
 </br>
 
-Below is a list of actions that should be mapped to delegator permission.
+아래는 delegator권한에 매핑해야할 lit 컨트랙트의 액션 목록입니다.
 
 ```json
 [
@@ -288,7 +269,7 @@ Below is a list of actions that should be mapped to delegator permission.
 
 </br>
 
-Account that has added controller and delegator permission is shown below.
+controller, delegator권한을 추가한 계정은 아래와 같이 보여집니다.
 
 ```
 user permissions: 
@@ -300,7 +281,7 @@ user permissions:
 
 </br>
 
-example
+예시:
 
 didtesttest1 user permission
 
@@ -320,17 +301,17 @@ permissions:
 
 ### 2.2.2 Create(Register)
 
-To create a DID Document, use the regdid action of lit contract.
+DID Document를 생성하기 위해서는 lit 컨트랙트의 regdid액션을 사용합니다.
 
-The result of executing the regdid action is the actual value stored in the Ledgis DID chain.
+regdid액션 실행 결과는 Ledgis DID체인에 저장되는 실제 값입니다.
 
-For compatibility, the result of DID Document read operation is converted and returned to the format of W3C.
+상호 호환성을 위해 DID Document read작업의 결과는 W3C의 포맷에 맞게 변환하여 반환합니다.
 
-Compare the result of create operation with the result of read operation.
+create작업의 결과와 read작업의 결과를 비교해보세요.
 
 </br>
 
-Below is the parameters for regdid action.
+아래는 regdid액션에 입력할 파라미터에 대한 설명입니다.
 
 ```
 {
@@ -348,7 +329,7 @@ Below is the parameters for regdid action.
 
 </br>
 
-example
+예시
 
 ```
 {
@@ -384,9 +365,9 @@ example
 
 ### 2.2.3 Read
 
-A `did:lit` DID can be looked up through DID Universal Resolver.
+누구나 DID Universal Resolver을 통해 `did:lit` 식별자를 조회할 수 있습니다.
 
-Input value should be given to resolve the result below.
+아래의 결과에 따라 input값을 주어야합니다. 
 
 ```
 endpoint: /universal resolver
@@ -396,7 +377,7 @@ output: {DID Document}
 
 </br>
 
-example
+예시:
 
 ```json
 input: did:lit:AEZ87t1bi5bRxmVh3ksMUi
@@ -478,17 +459,19 @@ output :
 }
 ```
 
+
+
 </br>
 
 ### 2.2.4 Update
 
-`did:lit` identification system, provides an update action for each attribute value of DID Document.
+`did:lit` 식별체계에서 update는 DID Document의 속성값 각각에 대한 update액션을 제공합니다.
 
 </br>
 
 ### controller 
 
-To modify `controller` property, use the `changectrl` action.
+ `controller` 을 수정할 경우,  `changectrl` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -504,7 +487,7 @@ input : {
 
 ### verificationMethod
 
-To modify `verificationMethod` property, use the `updatekeys` action.
+ `verificationMethod` 을 수정할 경우,  `updatekeys` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -520,7 +503,7 @@ input : {
 
 ### authentication
 
-To add an specific `authentication`, use the `addauth` action.
+ `authentication` 항목을 추가할 경우, `addauth` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -534,7 +517,7 @@ input : {
 
 </br>
 
-To delete an specific `authentication`, use the `rmauth` action.
+ `authentication` 항목을 삭제할 경우,  `rmauth` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -550,7 +533,7 @@ input : {
 
 ### assertionMethod
 
-To add an specific `assertionMethod`, use the `addasserter` action.
+ `assertionMethod` 항목을 추가할 경우,  `addasserter` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -564,8 +547,7 @@ input : {
 
 </br>
 
-To delete an specific `assertionMethod`, use the `rmasserter` action.
-
+ `assertionMethod` 항목을 삭제할 경우,  `rmasserter` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -581,7 +563,7 @@ input : {
 
 ### keyagreement
 
-To add an specific `keyAgreement`, use the `addkeyagrm` action.
+ `keyAgreement` 항목을 추가할 경우,  `addkeyagrm` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -595,7 +577,7 @@ input : {
 
 </br>
 
-To delete an specific `keyAgreement`, use the `rmkeyagrm` action.
+ `keyAgreement` 항목을 삭제할 경우,  `rmkeyagrm` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -611,7 +593,7 @@ input : {
 
 #### capabilityDelegation
 
-To add an specific `capabilityDelegation`, use the `adddelegator` action.
+`capabilityDelegation` 항목을 추가할 경우,  `adddelegator` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -625,8 +607,7 @@ input : {
 
 </br>
 
-To delete an specific `capabilityDelegation`, use the `rmdelegator` action.
-
+ `capabilityDelegation` 항목을 삭제할 경우,  `rmdelegator` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -642,7 +623,7 @@ input : {
 
 #### capabiltiyInvocation
 
-To add an specific `capabiltiyInvocation`, use the `addinvocator` action.
+`capabiltiyInvocation` 항목을 추가할 경우, `addinvocator` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -657,8 +638,7 @@ input : {
 
 </br>
 
-To delete an specific `capabiltiyInvocation`, use the `rminvocator` action.
- 
+ `capabiltiyInvocation` 항목을 삭제할 경우,  `rminvocator` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -675,8 +655,7 @@ input : {
 
 #### service
 
-To add an specific `service` property, use the `addservice` action.
-
+`service` 항목을 추가할 경우, `addservice` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -689,7 +668,7 @@ input : {
 
 </br>
 
-To delete an specific `service`, use the `rmservice` action.
+ `service` 항목을 삭제할 경우, `rmservice` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -705,7 +684,7 @@ input : {
 
 ### 2.2.5 Deactivate
 
-To delete(or deactivate) a DID Document from the Ledgis DID chain, use the `deletedid` action.
+DID Document를 Ledgis DID체인에서 삭제(비활성화)하고자 할 경우, `deletedid` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -720,17 +699,10 @@ input : {
 
 ## 3. VC Management
 
-Lit did method provides a function to manage status information of "Verifiable Credential" as well as "did method".
+`did:lit` 식별체계는 DID Method뿐 아니라 Verifiable Credential의 상태 정보를 관리하는 기능을 제공합니다.
 
-Every Verifiable Credential has its own id.
+모든 Verifiable Credential에는 고유한 ID가 있습니다. 그리고 모든 Verifiable Credential에는 상태 정보가 있습니다. 이를 관리하기 위해 Ledgis DID체인에서는 Verifiable Credential의 상태 정보 관리 방안을 제공하기로 했습니다. Verifiable Credential의 상태 정보는 유효, 중지, 폐기 등이 있을 수 있습니다. 아래는 Verifiable Credential에 대한 예시입니다.
 
-And every Verifiable Credential has an status information.
-
-To manage this, we decided Ledgis DID Chain should provide a way to manage the status information.
-
-Verifiable Credential's status information may be valid, suspended, or discarded.
-
-Below is an example of Verifiable Credential.
 
 ```json
 {
@@ -794,7 +766,8 @@ Below is an example of Verifiable Credential.
 
 ### 3.1 Register VC-id Status
 
-To register the status information of a specific Verifiable Credential, use `regvcs` action.
+
+특정 Verifiable Credential의 상태정보를 등록하려면 `regvcs` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -811,7 +784,7 @@ input : {
 
 ### 3.2 Update VC-id Status
 
-To update the status information of a specific Verifiable Credential, use `updatevcs` action.
+특정 Verifiable Credential의 상태정보를 수정하려면 `updatevcs` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -828,7 +801,7 @@ input : {
 
 ### 3.3 Remove VC-id Status
 
-If a specific Verifiable Credential has been revoked, the `rmvcs` action is used to delete the state information registered in the blockchain.
+특정 Verifiable Credential가 폐기되었다면 블록체인에 등록된 상태 정보를 삭제하기 위해 `rmvcs` 액션을 사용합니다.
 
 ```
 contract : lit
@@ -843,7 +816,8 @@ input : {
 
 ### 3.4 Clear VC-Status
 
-If you want to clear specific Verifiable Credentials information registered by the same user, you need to use the `clearvcs` action.
+
+동일한 사용자가 등록한 특정 Verifiable Credentials 정보를 지우려면 `clearvcs`액션을 사용해야합니다.
 
 ```
 contract : lit
@@ -857,24 +831,24 @@ input : {
 
 ## 4. Security Considerations
 
-The `did:lit` identification system is designed to acheive full SSI(Self Sovereign Identity).
+`did:lit` 식별체계는 완전한 SSI(Self Sovereign Identity)를 실현하기 위해 설계되었습니다.
 
-In order to control DID Documents, new permissions(controller, delegator) have been added to the user's Ledgis DID chain account.
+DID Document의 접근 통제를 위해 사용자 Ledgis DID체인 계정에 새로운 controller권한, delegator권한을 추가하였습니다.
 
-In the 'did:lit' identification system, CRUD operations on DID Document check the account of the DID Document controller value and verify that the account has controller permission.
+`did:lit` 식별체계에서 DID Document에 대한 CRUD작업은 DID Document controller값의 계정을 확인하고, 해당 계정에 controller권한이 있는지 확인합니다.
 
-It is designed so that only user accounts with the appropriate permision can modify DID Documents.
+해당 권한이 있는 사용자 계정만 DID Document를 수정할 수 있도록 설계하였습니다.
 
 </br></br>
 
 ## 5. Privacy Consideration
 
-Ledgis DID Chain only registers DID Document information and Verifiable Credential status information without PII (Personally-Identifiable Information) in consideration of user privacy.
+Ledgis DID체인은 사용자 프라이버시를 고려하여 PII(Personally-Identifiable Information)없이, DID Document정보, Verifiable Credential의 상태 정보만 등록합니다.
 
-Currently, only the following data is stored in the Ledgis DID chain.
+현재 Ledgis DID체인에는 아래 데이터만 저장합니다.
 
-- DID Docuemnt, for identifying an entity
-- Verifiable Credential status info, for VC validity management
+- 개체를 식별하는데 사용되는 DID Document
+- Verifiable Credential의 유효성을 관리할 수 있는 상태정보
 
 
 </br></br>
