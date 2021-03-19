@@ -1,4 +1,6 @@
-# LIT DID Method Specification
+# LIT DID Method Specification v0.1.0
+
+This is version 0.1.0 of the lit DID Method Specification.
 
 </br>
 

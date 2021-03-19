@@ -1,4 +1,6 @@
-# LIT DID Method Specification
+# LIT DID Method Specification v0.1.0
+
+해당 문서는 lit DID Method 명세서 0.1.0버전입니다.
 
 </br>
 
