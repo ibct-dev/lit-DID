@@ -1,27 +1,19 @@
 # LIT DID Method Specification v0.1.0
 
-해당 문서는 lit DID Method 명세서 0.1.0버전입니다.
+해당 문서는 lit DID Method 명세서 0.1.1버전입니다.
 
 </br>
 
 ## Introduction
 
-LEDGIS는 IBCT에서 구축한 블록체인으로 "원장"을 의미하는 LEDGER와 "수호, 방패"를 의미하는 AEGIS 두 단어의 합성어입니다.
-
-LEDGIS는 원장의 무결성을 수호하여 참여자의 신뢰와 이익을 지켜내는 것을 목표로 합니다.
-
-Ledgis DID체인은 이를 기반으로 lit 컨트랙트를 통해 개체를 투명하고 암호학적으로 신뢰성이 보장된 `did:lit`식별체계를 제공합니다.
+LEDGIS는 IBCT에서 구축한 블록체인으로 "원장"을 의미하는 LEDGER와 "수호, 방패"를 의미하는 AEGIS 두 단어의 합성어입니다. LEDGIS는 원장의 무결성을 수호하여 참여자의 신뢰와 이익을 지켜내는 것을 목표로 합니다. Ledgis DID체인은 이를 기반으로 lit 컨트랙트를 통해 개체를 투명하고 암호학적으로 신뢰성이 보장된 `did:lit`식별체계를 제공합니다.
 
 
 </br>
 
 ## Abstract
 
-Ledgis DID체인은 자기주권신원 및 검증가능한 자격증명을 위한 분산형 네트워크 시스템입니다.
-
-Ledgis DID체인은 `did:lit` 식별체계를 이용해 기존의 온라인상에서의 아이덴티티 문제를 개선할 수 있을 것으로 예상됩니다.
-
-LIT DID Method spec은 Ledgis DID체인에서 동작하는 탈중앙 식별자 및 자격증명 상태 정보 관리에 대한 내용을 담고있습니다.
+Ledgis DID체인은 자기주권신원 및 검증가능한 자격증명을 위한 분산형 네트워크 시스템입니다. Ledgis DID체인은 `did:lit` 식별체계를 이용해 기존의 온라인상에서의 아이덴티티 문제를 개선할 수 있을 것으로 예상됩니다. LIT DID Method spec은 Ledgis DID체인에서 동작하는 탈중앙 식별자 및 자격증명 상태 정보 관리에 대한 내용을 담고있습니다.
 
 </br>
 
@@ -33,9 +25,74 @@ LIT DID Method spec은 Ledgis DID체인에서 동작하는 탈중앙 식별자 �
 
 ## 1. lit DID
 
-`did:lit` 식별체계의 lit는 LEDGIS identity transformation의 약어로, 중앙기관 없이 사람, 조직 또는 장치를 고유하게 식별하는 방법을 제공하기 위해 개발된 탈중앙화된 식별체계입니다. 
+`did:lit` 식별체계의 lit는 LEDGIS identity transformation의 약어로, 중앙기관 없이 사람, 조직 또는 장치를 고유하게 식별하는 방법을 제공하기 위해 개발된 탈중앙화된 식별체계입니다. `did:lit` 식별체계는 DID Method는 W3C 표준을 따릅니다. 이 문서에서는 `lit` 식별 DID 및 DID Document의 생성, 업데이트, 취소 방법 및 Verifiable Credential의 상태 정보 관리에 방안 대해 정의합니다.
 
-`did:lit` 식별체계는 DID Method는 W3C 표준을 따릅니다. 이 문서에서는 `lit` 식별 DID 및 DID Document의 생성, 업데이트, 취소 방법 및 Verifiable Credential의 상태 정보 관리에 방안 대해 정의합니다. 
+- Ledgis DID chain : https://lit.ledgis.io
+
+- did system contract code : led.lit
+
+  - table : did, controller
+
+</br>
+
+`lit` DID Document에는 아래와 같은 속성값이 포함됩니다.
+
+- id
+- controller
+- authentication
+- assertionMethod
+- keyAgreement
+- capabilityInvocation
+- capabilityDelegation
+- verificationMethod
+- service
+
+</br>
+
+예시.
+
+```json
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+  "controller": "did:lit:WTu1etB6oU5ggo7Bkrxhd1",
+  "service": [],
+  "authentication": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#0"],
+  "assertionMethod": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#1"],
+  "keyAgreement": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#2"],
+  "capabilityInvocation": [],
+  "capabilityDelegation": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#3"],
+  "verificationMethod": [
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#0",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "zbPJfARDmbshQ2iSZ3fg5WxAh9VEXAoiyi6QRBJBBj2z"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#1",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "24YpP4L2ydSffMn92KF1EvzgwcStdzixut1CDizuCpaqD"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#2",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "277hEJxdh596ptwNmyApNTa1TZLMjgpEeQgXbTbXGYns1"
+    },
+    {
+      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#3",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
+      "publicKeyBase58": "foWWHmUrwxXFu12aEoS4GK9MdqVNTKLbpGEF9ND7wEvH"
+    }
+  ],
+  "createdAt": "2021-03-17T07:05:14+00:00",
+  "updatedAt": "2021-03-17T07:05:14+00:00"
+}
+
+```
 
 </br>
 
@@ -86,150 +143,117 @@ did를 포함한 lit DID 식별자의 정규 표현식은 아래와 같습니다
 
 유효한 `did:lit` 식별자 DID는 did:lit:AEZ87t1bi5bRxmVh3ksMUi 같을 수 있습니다.
 
-</br></br>
+</br>
 
-## 2. DID Document
+### 1.3 did system contract
 
 </br>
 
-### 2.1 DID Document 예시
-
-`lit` DID Document에는 아래와 같은 속성값이 포함됩니다.
-
-- id
-- controller
-- authentication
-- assertionMethod
-- keyAgreement
-- capabilityInvocation
-- capabilityDelegation
-- verificationMethod
-- service
+Ledgis DID체인은 계정과 권한 기반으로 동작합니다. 사용자가 계정을 생성하면 기본적으로 owner, active권한이 생성됩니다. owner권한은 모든 계정에 대한 권한 계층의 루트에 위치합니다. 즉, 계정에 매핑된 권한 중 가장 높은 권한입니다. active권한은 owner권한과 관련된 키 변경을 제외하고 트랜잭션을 실행하는데 사용됩니다. Ledgis DID체인은 active하위 권한에 목적에 맞는 권한을 추가 생성할 수 있습니다. 이러한 계정, 권한의 특성을 이용하여 사용자의 SSI(Self Sovereign Identity) 실현하고자 합니다. 이를 위해 `did:lit`와 관련된 모든 제어 기능을 Ledgis DID체인의 시스템 컨트랙트인 led.lit로 구현했다.
 
 </br>
 
-예시.
+led.lit 시스템 컨트랙트를 통해 사용자 계정에 새로운 권한 생성 및 controller용 did document를 생성합니다.
 
-```json
-{
-  "@context": "https://www.w3.org/ns/did/v1",
-  "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-  "controller": "didtesttest1",
-  "service": [],
-  "authentication": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#0"],
-  "assertionMethod": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#1"],
-  "keyAgreement": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#2"],
-  "capabilityInvocation": [],
-  "capabilityDelegation": ["did:lit:AEZ87t1bi5bRxmVh3ksMUi#3"],
-  "verificationMethod": [
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#0",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "zbPJfARDmbshQ2iSZ3fg5WxAh9VEXAoiyi6QRBJBBj2z"
-    },
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#1",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "24YpP4L2ydSffMn92KF1EvzgwcStdzixut1CDizuCpaqD"
-    },
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#2",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "277hEJxdh596ptwNmyApNTa1TZLMjgpEeQgXbTbXGYns1"
-    },
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#3",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "foWWHmUrwxXFu12aEoS4GK9MdqVNTKLbpGEF9ND7wEvH"
-    },
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#4",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "qVFze1eaPJavKvmGqEsF4LPRdUDzsvFukqQH5KVhseE1"
-    },
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#5",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "29NGo9CDpMcVWhTp1XKNse63DVzgHUHiQpWv1bQMXj7Wx"
-    },
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#6",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "nnvBVyLX77f39KwNrsUhkdvjWCVXt4o71U6DBbZSbDZA"
-    },
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#7",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "nESzTFNwQfdar2v4aHPKeYZA6fobDfdYsssFV8ZBzRTZ"
-    },
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#8",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "sZzPChJYcibqcvr7nvHJHyVUtACKoNyRarsppdwMJvGN"
-    },
-    {
-      "id": "did:lit:AEZ87t1bi5bRxmVh3ksMUi#9",
-      "type": "EcdsaSecp256k1VerificationKey2019",
-      "controller": "did:lit:AEZ87t1bi5bRxmVh3ksMUi",
-      "publicKeyBase58": "z2SqWSUz92ULURxmr254RWbg3UdFLwRSLQctuwHHxbWy"
-    }
-  ],
-  "createdAt": "2021-03-17T07:05:14+00:00",
-  "updatedAt": "2021-03-17T07:05:14+00:00"
-}
+사용자가 Ledgis DID체인으로 계정 생성 요청을 보내면 사용자 계정이 생서되면서 1. controller권한 및 delegator권한 생성, 2. controller did document 생성, 3. did document CRUD를 수행한다.
 
+</br>
+
+#### 1.3.1 account with customized permission
+
+Ledgis DID체인의 사용자 계정에는 owner권한, active권한, controller권한, delegator권한이 매핑되어 있습니다. Ledgis DID체인의 모든 사용자 계정에는 controller권한과 delegator권한을 생성합니다(updateauth). led.lit 스마트 컨트랙트의 액션을 controller권한, delegator권한에 링크하여 해당 권한으로 링크 된 스마트 컨트랙트 액션을 실행할 수 있도록 설정할 수 있다. 링크(linkauth)를 통해 액션 실행 권한의 유효성 검사 시 필요한 권한을 조회할 때 유용하다. 각각의 권한의 역할은 아래와 같다.
+
+- controller 권한
+
+    did document에 대한 CRUD가 가능한 권한으로 did document에 대한 CRUD 트랜잭션 실행 시 Ledgis DID체인에서 반드시 확인하는 권한
+
+- delegator 권한
+
+    did document의 capabilityInvocation에 CRUD가 가능한 권한으로 capabilityInvocation항목에 did 추가/삭제 시 반드시 환인하는 권한
+
+</br>
+
+controller, delegator권한을 추가한 계정은 아래와 같이 보여집니다.
+
+```txt
+user permissions: 
+    owner        1:  PUBKEYVALUE   1 <Owner permission public key value>
+        active       1:  PUBKEYVALUE   1 <Active permission public key value>
+            controller   1:  PUBKEYVALUE   1 <Controller permission public key value>
+                delegator    1:  PUBKEYVALUE   1 <User's controller permission >
 ```
 
 </br>
 
-## 2.2 CRUD Operation
 
-DID method 명세에는 lit 컨트랙트를 통해 CRUD(Create, Read, Update, Delete)할 수 있는 데이터에 대해 소개하고 작업 과정에 대해 설명합니다.
 
-DID method 명세에는 DID Document 관리를 위해 목적에 맞는 액션에 대해 소개합니다.
+</br>
+</br>
 
-아래에 각 정보의 CRUD방법에 대한 설명입니다.
+#### 1.3.2 controller did document
+
+Ledgis DID체인에서 계정을 생성하면 controller did document가 생성된다. 우리는 did document를 수정할 권한을 사용자에게 제공한다. 이를 did document의 controller 속성값과 면결하고자 했다. W3C표준에 따르면 controller 속성값은 did정규식을 만족해야한다고 한다. 하지만 Ledgis DID체인의 계정은 `did:lit`정규식을 만족하지 않는다. 그렇기 때문에 사용자의 계정과 did document의 controller를 연결하기 위해 controller did document를 만들었다.
+
+controller did document는 별도의 키 셋 없이 did document의 id, controller값만 보유하고 있다. 이때 did document의 id와 controller값은 동일한 did값이 들어간다. controller did document의 id값과 사용자 계정을 매핑시켜 Ledgis DID체인에 기록한다. 만약 사용자가 자신의 DID Document를 수정하고자 할 경우, Ledgis DID체인의 노드는 DID Document에 있는 controller값에 매핑된 계정을 조회한다. 사용자 계정의 controller권한 또는 delegator권한 검사를 통해 DID Document의 CRUD가 수행된다.
 
 </br>
 
-### 2.2.1 Add Permission
+controller did document example
 
-`did:lit` 식별자는 Ledgis DID체인의 lit 컨트랙트에 의해 관리됩니다. 
+```json
+{
+    "@context": "https://www.w3.org/ns/did/v1",
+    "id": "did:lit:WTu1etB6oU5ggo7Bkrxhd1",
+    "controller": "did:lit:WTu1etB6oU5ggo7Bkrxhd1",
+    "service": [],
+    "authentication": [],
+    "assertionMethod": [],
+    "keyAgreement": [],
+    "capabilityInvocation": [],
+    "capabilityDelegation": [],
+    "verificationMethod": [],
+    "createdAt": "2021-06-07T05:42:12+00:00",
+    "updatedAt": "2021-06-07T05:42:12+00:00"
+}
+```
 
-SSI(Self Sovereign Identity)를 실현하기 위해 사용자의 DID, DID Document는 사용자가 직접 관리하며 DID Document등록, 수정, 삭제 모두 사용자에 의해 직접 수행됩니다.
+#### 1.3.3 DID Document CRUD Operation
 
-이를 위해 `did:lit` 식별체계에서는 Ledgis DID체인의 계정, 권한 기능을 활용하였습니다.
+2절 참고
 
-Ledgis DID체인은 계정 기반으로 트랜잭션이 발생되며 계정 생성시, 기본적으로 owner, active권한이 계정에 매핑되어 있습니다.
+
+
+</br></br>
+
+## 2. DID Document CRUD Operation
 
 </br>
 
-owner권한은 모든 계정에 대한 권한 계층의 루트에 위치합니다. 따라서 계정에서 권한 구조 내에서 가질 수 있는 가장 높은 상대 권한입니다.
+DID Document에 대한 CRUD를 수행하는 led.lit 스마트 컨트랙트의 액션은 아래와 같다.
 
-active권한은 owner권한과 관련된 키 변경을 제외하고 트랜잭션을 실행하는데 사용됩니다.
+did document의 CRUD 액션
 
-owner, active권한은 계층적인 구조를 가지고 있지만, 구체적인 작업이 필요한 경우 active권한 하위에 커스텀 권한을 생성하여 특정 컨트랙트의 액션과 매핑할 수 있습니다.
+```json
+[
+    "changectrl",
+    "deletedid",
+    "regdid",
+]
+```
 
 </br>
 
-`did:lit` 식별체계에서는 active권한의 자식 권한으로 controller권한, delegator권한을 생성하여 Ledgis DID체인에 등록되는 DID Document를 관리합니다.
+verification method의 CRUD 액션
 
-새로운 권한을 추가하기 위해서는 updateauth, linkauth를 이용해야합니다.
+```json
+[
+    "updatekeys",   
+];
+```
 
-updateauth를 통해 `controller`, `delegator`권한을 생성합니다.
+</br>
 
-그리고 linkauth를 통해 lit 컨트랙트 액션을 권한에 링크하여 해당 권한으로 링크된 액션을 실행할 수 있게 설정합니다.
-
-아래는 controller권한에 매핑해야할 lit 컨트랙트의 액션 목록입니다.
+verification relationship의 CRUD 액션
 
 ```json
 [
@@ -238,82 +262,38 @@ updateauth를 통해 `controller`, `delegator`권한을 생성합니다.
     "adddelegator",
     "addinvocator",
     "addkeyagrm",
-    "addservice",
-    "changectrl",
-    "clearvcs",
-    "deletedid",
-    "regdid",
-    "regvcs",  
     "rmasserter",
     "rmauth",
     "rmdelegator",
     "rminvocator",
     "rmkeyagrm",
-    "rmservice",
-    "rmvcs", 
-    "updatekeys",
-    "updatevcs", 
 ];
 ```
 
 </br>
 
-아래는 delegator권한에 매핑해야할 lit 컨트랙트의 액션 목록입니다.
+service의 CRUD 액션
 
 ```json
 [
-    "addinvocator"
-    "rminvocator"
-];
+    "addservice",
+    "rmservice",
+]
 ```
 
 </br>
 
-controller, delegator권한을 추가한 계정은 아래와 같이 보여집니다.
-
-```
-user permissions: 
-    owner        1:    1 <Owner permission public key value>
-        active       1:    1 <Active permission public key value>
-            controller   1:    1 <Controller permission public key value>
-                delegator    1:    1 <User's controller permission >
-```
-
-</br>
-
-예시:
-
-didtesttest1 user permission
-
-```
-created: 2021-03-16T08:08:30.000
-permissions:
-     owner          3:    1 
-     EOS6E5Wcw8WJqGu13igZzd4YCGKpuCN7QxjAGPrAdDn7ZbsX23cP7, 1 EOS6JbyJ2fVSKt8F3QWYtczU3mJbni4EC6KTjYezmsZRvJeKX18QJ, 1 EOS7TQHjDHea56GyLYfRy7SfBypm27K5wrC9tLrNvTpFK8U4GH5hc, 1 EOS7c4p2jkWbmkG415RrhukK26PyJhXfhozLwAdSYgzvQwbkUsEY8, 1 EOS8Zwn1my4KusbBLwZue2g4rtm1HcSz7rm8jiSxoW8XFwv7kwMzZ
-        active      2:    1 
-        EOS5KGrXBQyhSKmxqiZhpgJdZvScAapVNuDf1GHqL3AkVWSvyEf2g, 1 EOS72jo9wE3DKMXy16CNEkRQtfAmqknJUp6JkiKSuwWheFUxjGpNw, 1 EOS7efW6w6b1WKftgZMdsTwwsD9TUuxn6WaVWrQHY5oFKpza5r1k9
-           controller       1:    1 
-           EOS6ZtXCkzDAf73t6qtq881hFZUUiwhBdP8pbbzhpNyMVBxrftDm7, 1 EOS75W5Gm4aK4LzBjn2uBxM4k56YEC9deboxKyB1g3xvjG7UL1KUP
-              delegator     1:    1 didtesttest1@controller
-```
-
-</br>
+### 2.1 CREATE
 
 ### 2.2.2 Create(Register)
 
-DID Document를 생성하기 위해서는 lit 컨트랙트의 regdid액션을 사용합니다.
-
-regdid액션 실행 결과는 Ledgis DID체인에 저장되는 실제 값입니다.
-
-상호 호환성을 위해 DID Document read작업의 결과는 W3C의 포맷에 맞게 변환하여 반환합니다.
-
-create작업의 결과와 read작업의 결과를 비교해보세요.
+DID Document를 생성하기 위해서는 lit 컨트랙트의 regdid액션을 사용한다. regdid액션 실행 결과는 Ledgis DID체인에 저장되는 실제 값입니다. 상호 호환성을 위해 DID Document read작업의 결과는 W3C의 포맷에 맞게 변환하여 반환합니다. create작업의 결과와 read작업의 결과를 비교해보세요.
 
 </br>
 
 아래는 regdid액션에 입력할 파라미터에 대한 설명입니다.
 
-```
+```json
 {
     controller: <User Account>,
     uuid : <lit did Identifier>,
@@ -701,7 +681,7 @@ input : {
 
 `did:lit` 식별체계는 DID Method뿐 아니라 Verifiable Credential의 상태 정보를 관리하는 기능을 제공합니다.
 
-모든 Verifiable Credential에는 고유한 ID가 있습니다. 그리고 모든 Verifiable Credential에는 상태 정보가 있습니다. 이를 관리하기 위해 Ledgis DID체인에서는 Verifiable Credential의 상태 정보 관리 방안을 제공하기로 했습니다. Verifiable Credential의 상태 정보는 유효, 중지, 폐기 등이 있을 수 있습니다. 아래는 Verifiable Credential에 대한 예시입니다.
+모든 Verifiable Credential에는 고유한 ID가 있습니다. 그리고 모든 Verifiable Credential에는 상태 정보가 있습니다. 이를 관리하기 위해 Ledgis DID체인에서는 Verifiable Credential의 상태 정보 관리 방안을 제공하기로 했다. Verifiable Credential의 상태 정보는 유효, 중지, 폐기 등이 있을 수 있습니다. 아래는 Verifiable Credential에 대한 예시입니다.
 
 
 ```json
