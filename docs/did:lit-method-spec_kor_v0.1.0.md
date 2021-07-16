@@ -125,7 +125,7 @@ base58char = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" / "A" /"B" / "C
 
 lit 식별자값 정규 표현식은 아래와 같다
 
-```json
+```txt
 ^[1-9A-HJ-NP-Za-km-z]{21,22}$
 ```
 
@@ -133,7 +133,7 @@ lit 식별자값 정규 표현식은 아래와 같다
 
 did를 포함한 lit DID 식별자의 정규 표현식은 아래와 같다.
 
-```json
+```txt
 ^(did:lit:(?:[1-9A-HJ-NP-Za-km-z]{21,22}))$
 ```
 
@@ -669,7 +669,7 @@ DID Universal Resolver을 통해 `did:lit` 식별자를 조회할 수 있다.
 
 아래의 결과에 따라 input값을 주어야한다.
 
-```json
+```txt
 endpoint: /universal resolver
 input: {DID}
 output: {DID Document}
