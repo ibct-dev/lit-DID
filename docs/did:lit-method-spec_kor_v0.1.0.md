@@ -298,7 +298,7 @@ DID Document를 생성하기 위해서는 lit 컨트랙트의 regdid액션을 �
 
 아래는 regdid액션에 필요한 파라미터에 대한 설명이다.
 
-```json
+```txt
 {
     controller: <user controller did's uuid value>,
     uuid : <lit did Identifier>,
@@ -348,7 +348,7 @@ regdid 파라미터 예시
       "index": 4
     }
   ],
-  "authentication": [ { uuid: "99394650071860096581833102200703088599", index: 0 } ],
+  "authentication": [ { "uuid": "99394650071860096581833102200703088599", "index": 0 } ],
   "assertionMethod": [],
   "keyAgreement": [],
   "capabilityInvocation": [],
@@ -362,7 +362,7 @@ regdid 파라미터 예시
 
 DID Document를 Ledgis DID체인에서 삭제(비활성화)하고자 할 경우, `deletedid` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : deletedid
 input : {
@@ -391,7 +391,7 @@ deletedid 파라미터 예시
 
  `controller` 을 수정할 경우,  `changectrl` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : changectrl
 input : {
@@ -422,7 +422,7 @@ changectrl 파라미터 예시
 
  `verificationMethod` 을 수정할 경우,  `updatekeys` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : updatekeys
 input : {
@@ -489,7 +489,7 @@ authentication, assertionMethod, keyAgreement, capabilityDelegation에 대한 �
 
 `authentication` 항목을 추가할 경우, `addauth` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : addauth
 input : {
@@ -507,7 +507,7 @@ addauth 파라미터 예시
 {
     "controller": "317158017176121438146673224759223206864",
     "uuid": "99394650071860096581833102200703088599",
-    "authenticator": { uuid: "99394650071860096581833102200703088599", index: 0 }
+    "authenticator": { "uuid": "99394650071860096581833102200703088599", "index": 0 }
 }
 ```
 
@@ -516,7 +516,7 @@ addauth 파라미터 예시
 
  `authentication` 항목을 삭제할 경우, `rmauth` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : rmauth
 input : {
@@ -534,7 +534,7 @@ rmauth 파라미터 예시
 {
     "controller": "317158017176121438146673224759223206864",
     "uuid": "99394650071860096581833102200703088599",
-    "authenticator": { uuid: "99394650071860096581833102200703088599", index: 0 }
+    "authenticator": { "uuid": "99394650071860096581833102200703088599", "index": 0 }
 }
 ```
 
@@ -546,7 +546,7 @@ capabilityInvocation에 대한 추가/삭제는 사용자 계정의 delegator권
 
 `capabiltiyInvocation` 항목을 추가할 경우, `addinvocator` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : addinvocator
 input : {
@@ -563,9 +563,9 @@ addinvocator 파라미터 예시
 
 ```json
 {
-    "delegator": { uuid: "317158017176121438146673224759223206864", index: 15 },
+    "delegator": { "uuid": "317158017176121438146673224759223206864", "index": 15 },
     "signature": "SIG_K1_K86rnAkBqcWFT2XoUNrhXdyoc3gdajLN6y4RmCb1mqSj3W4Q6TtRgQL5PWwvdBAdLjKha3ZK3DLzYLWDTVvuXQW87McvKT",
-    "capabilityInvocator": { uuid: "273181167325615934766063315144949048995", index: 9 },
+    "capabilityInvocator": { "uuid": "273181167325615934766063315144949048995", "index": 9 },
     "uuid": "99394650071860096581833102200703088599"
 }
 ```
@@ -574,7 +574,7 @@ addinvocator 파라미터 예시
 
  `capabiltiyInvocation` 항목을 삭제할 경우, `rminvocator` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : rminvocator
 input : {
@@ -591,9 +591,9 @@ rminvocator 파라미터 예시
 
 ```json
 {
-    "delegator": { uuid: "317158017176121438146673224759223206864", index: 15 },
+    "delegator": { "uuid": "317158017176121438146673224759223206864", "index": 15 },
     "signature": "SIG_K1_K86rnAkBqcWFT2XoUNrhXdyoc3gdajLN6y4RmCb1mqSj3W4Q6TtRgQL5PWwvdBAdLjKha3ZK3DLzYLWDTVvuXQW87McvKT",
-    "capabilityInvocator": { uuid: "273181167325615934766063315144949048995", index: 9 },
+    "capabilityInvocator": { "uuid": "273181167325615934766063315144949048995", "index": 9 },
     "uuid": "99394650071860096581833102200703088599"
 }
 ```
@@ -606,7 +606,7 @@ rminvocator 파라미터 예시
 
 `service` 항목을 추가할 경우, `addservice` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : addservice
 input : {
@@ -638,7 +638,7 @@ addservice 파라미터 예시
 
  `service` 항목을 삭제할 경우, `rmservice` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : rmservice
 input : {
@@ -817,7 +817,7 @@ output: {DID Document}
 
 특정 Verifiable Credential의 상태정보를 등록하려면 `regvcs` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : regvcs
 input : {
@@ -847,7 +847,7 @@ regvcs 파라미터 예시
 
 특정 Verifiable Credential의 상태정보를 수정하려면 `updatevcs` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : updatevcs
 input : {
@@ -877,7 +877,7 @@ updatevcs 파라미터 예시
 
 특정 Verifiable Credential가 폐기되었다면 블록체인에 등록된 상태 정보를 삭제하기 위해 `rmvcs` 액션을 사용한다.
 
-```json
+```txt
 contract : led.lit
 action : rmvcs
 input : {
@@ -903,7 +903,7 @@ rmvcs 파라미터 예시
 
 동일한 사용자가 등록한 특정 Verifiable Credentials 정보를 지우려면 `clearvcs`액션을 사용해야한다.
 
-```json
+```txt
 contract : led.lit
 action : clearvcs
 input : {
