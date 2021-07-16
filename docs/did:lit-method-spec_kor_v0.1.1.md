@@ -481,7 +481,7 @@ verification relationship에는 `authentication`, `assertionMethod`, `keyAgreeme
 
 </br>
 
-### 2.4.1 authentication udpate
+### 2.4.1 authentication update
 
 </br>
 
