@@ -12,7 +12,6 @@ LEDGIS aims to protect the trust and interests of user by protecting the integri
 
 Based on this, Ledgis DID Chain provides a transparent and cryptographically reliable `did:lit` identification system through a lit contract.
 
-
 </br>
 
 ## Abstract
@@ -37,7 +36,7 @@ LIT in the `did:lit` identification system stands for LEDGIS identity transforma
 
 Its a decentralized identification system developed to provide a method to uniquely identify a person, organization or device without a central authority.
 
-The `did:lit` identification system follows the W3C standard for the DID Method. 
+The `did:lit` identification system follows the W3C standard for the DID Method.
 
 This document defines how to create, update, and cancel the `lit` identification DID and DID Document, and how to manage the status information of Verifiable Credential.
 
@@ -45,9 +44,9 @@ This document defines how to create, update, and cancel the `lit` identification
 
 ### 1.1 lit DID Method Name
 
-The name string identifying the lit DID method is `lit`. 
+The name string identifying the lit DID method is `lit`.
 
-Identifiers using the `did:lit` identification scheme must start with the `did:lit` prefix. 
+Identifiers using the `did:lit` identification scheme must start with the `did:lit` prefix.
 
 The values after the prefix are described in the remaining sections below.
 
@@ -71,7 +70,7 @@ base58char = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" / "A" /"B" / "C
 
 ### 1.2.1 lit-identifier
 
-All `did:lit` identifiers are base58 encoded with 16 bytes of uuid alphabet. 
+All `did:lit` identifiers are base58 encoded with 16 bytes of uuid alphabet.
 
 `did:lit` identifier use base58 to avoid readability issues for 0, O, I, l characters.
 
@@ -79,25 +78,21 @@ All `did:lit` identifiers are base58 encoded with 16 bytes of uuid alphabet.
 
 A convenient regex to match `did:lit` identifier is:
 
-```
+```json
 ^[1-9A-HJ-NP-Za-km-z]{21,22}$
 ```
-
 
 </br>
 
 A convenient regex to match the entire `did:lit:IDENTIFIER` string is:
 
-
-```
+```json
 ^(did:lit:(?:[1-9A-HJ-NP-Za-km-z]{21,22}))$
 ```
 
 </br>
 
-
 A valid did DID might be `did:lit:AEZ87t1bi5bRxmVh3ksMUi`.
-
 
 </br></br>
 
@@ -230,7 +225,7 @@ The Ledgis DID chain generates account-based transactions and, by default, owner
 
 An account is a human-readable name that is stored on the blockchain. An account is required to transfer or push any valid transaction to the blockchain. Every account has two default named permissions when created, owner and active.
 
-The owner permission sits at the root of the permission hierarchy for every account. It is therefore the highest relative permission an account can have within its permission structure. 
+The owner permission sits at the root of the permission hierarchy for every account. It is therefore the highest relative permission an account can have within its permission structure.
 
 The active permission is typically used for executing transactions, exepct changing the keys associated with the owner.
 
@@ -292,7 +287,7 @@ Below is a list of actions that should be mapped to delegator permission.
 
 Account that has added controller and delegator permission is shown below.
 
-```
+```txt
 user permissions: 
     owner        1:    1 <Owner permission public key value>
         active       1:    1 <Active permission public key value>
@@ -306,7 +301,7 @@ example
 
 didtesttest1 user permission
 
-```
+```txt
 created: 2021-03-16T08:08:30.000
 permissions:
      owner          3:    1 
@@ -334,17 +329,17 @@ Compare the result of create operation with the result of read operation.
 
 Below is the parameters for regdid action.
 
-```
+```json
 {
-    controller: <User Account>,
-    uuid : <lit did Identifier>,
-    service : [{Service info DID subject is using}]
-    verificationMethod: [{List of VerificationMethod}],
-    authentication: [{PublicKey Value and Public Key Controller}],
-    assertionMethod: [{PublicKey Value and Public Key Controller}],
-    keyAgreement: [{PublicKey Value and Public Key Controller}],
-    capabilityInvocation: [{PublicKey Value and Public KeyController}],
-    capabilityDelegation: [{PublicKey Value and Public KeyController}]
+    "controller": <User Account>,
+    "uuid" : <lit did Identifier>,
+    "service" : [{Service info DID subject is using}],
+    "verificationMethod": [{List of VerificationMethod}],
+    "authentication": [{PublicKey Value and Public Key Controller}],
+    "assertionMethod": [{PublicKey Value and Public Key Controller}],
+    "keyAgreement": [{PublicKey Value and Public Key Controller}],
+    "capabilityInvocation": [{PublicKey Value and Public KeyController}],
+    "capabilityDelegation": [{PublicKey Value and Public KeyController}]
 }
 ```
 
@@ -352,25 +347,25 @@ Below is the parameters for regdid action.
 
 example
 
-```
+```json
 {
-      controller: 'didtesttestc',
-      uuid: '312846759731486237926840657526976805015',
-      service: [],
-      verificationMethod: [
+      "controller": "didtesttestc",
+      "uuid": "312846759731486237926840657526976805015",
+      "service": [],
+      "verificationMethod": [
         ...
         {
-          publicKey: 'PUB_K1_7bhWFK2tqeNY2PNbKUE7nSjzeYerNuvLyPMr3Qo1bHKWx2az3a',
-          controller: '312846759731486237926840657526976805015'
+          "publicKey": "PUB_K1_7bhWFK2tqeNY2PNbKUE7nSjzeYerNuvLyPMr3Qo1bHKWx2az3a",
+          "controller": "312846759731486237926840657526976805015"
         },
         ...
       ],
-      authentication: [ { uuid: '312846759731486237926840657526976805015', index: 0 } ],
-      assertionMethod: [ { uuid: '312846759731486237926840657526976805015', index: 1 } ],
-      keyAgreement: [ { uuid: '312846759731486237926840657526976805015', index: 2 } ],
-      capabilityInvocation: [],
-      capabilityDelegation: [ { uuid: '312846759731486237926840657526976805015', index: 3 } ],
-      service: [{
+      "authentication": [ { uuid: "312846759731486237926840657526976805015", index: 0 } ],
+      "assertionMethod": [ { uuid: "312846759731486237926840657526976805015", index: 1 } ],
+      "keyAgreement": [ { uuid: "312846759731486237926840657526976805015", index: 2 } ],
+      "capabilityInvocation": [],
+      "capabilityDelegation": [ { uuid: "312846759731486237926840657526976805015", index: 3 } ],
+      "service": [{
           "id": "did:lit:W4fgrbXRaSURDcjEJ4APcS#ttp",
           "type": "TrustedThirdPartyVerificationVersion1.0Service",
           "endpoint": "https://ttp.crosscheck.com/blahblah"
@@ -390,7 +385,7 @@ A `did:lit` DID can be looked up through DID Universal Resolver.
 
 Input value should be given to resolve the result below.
 
-```
+```json
 endpoint: /universal resolver
 input: {DID}
 output: {DID Document}
@@ -488,12 +483,12 @@ output :
 
 </br>
 
-### controller 
+### controller
 
 To modify `controller` property, use the `changectrl` action.
 
-```
-contract : lit
+```json
+contract : led.lit
 action : changectrl
 input : {
     "from" :  <Current Account Value of Controller in DID Document>
@@ -508,7 +503,7 @@ input : {
 
 To modify `verificationMethod` property, use the `updatekeys` action.
 
-```
+```json
 contract : lit
 action : updatekeys
 input : {
@@ -524,7 +519,7 @@ input : {
 
 To add an specific `authentication`, use the `addauth` action.
 
-```
+```json
 contract : lit
 action : addauth
 input : {
@@ -538,7 +533,7 @@ input : {
 
 To delete an specific `authentication`, use the `rmauth` action.
 
-```
+```json
 contract : lit
 action : rmauth
 input : {
@@ -554,7 +549,7 @@ input : {
 
 To add an specific `assertionMethod`, use the `addasserter` action.
 
-```
+```json
 contract : lit
 action : addasserter
 input : {
@@ -568,8 +563,7 @@ input : {
 
 To delete an specific `assertionMethod`, use the `rmasserter` action.
 
-
-```
+```json
 contract : lit
 action : rmasserter
 input : {
@@ -585,7 +579,7 @@ input : {
 
 To add an specific `keyAgreement`, use the `addkeyagrm` action.
 
-```
+```json
 contract : lit
 action : addkeyagrm
 input : {
@@ -599,7 +593,7 @@ input : {
 
 To delete an specific `keyAgreement`, use the `rmkeyagrm` action.
 
-```
+```json
 contract : lit
 action : rmkeyagrm
 input : {
@@ -615,7 +609,7 @@ input : {
 
 To add an specific `capabilityDelegation`, use the `adddelegator` action.
 
-```
+```json
 contract : lit
 action : adddelegator
 input : {
@@ -629,8 +623,7 @@ input : {
 
 To delete an specific `capabilityDelegation`, use the `rmdelegator` action.
 
-
-```
+```json
 contract : lit
 action : rmdelegator
 input : {
@@ -646,7 +639,7 @@ input : {
 
 To add an specific `capabiltiyInvocation`, use the `addinvocator` action.
 
-```
+```json
 contract : lit
 action : addinvocator
 input : {
@@ -660,9 +653,8 @@ input : {
 </br>
 
 To delete an specific `capabiltiyInvocation`, use the `rminvocator` action.
- 
 
-```
+```json
 contract : lit
 action : rminvocator
 input : {
@@ -679,8 +671,7 @@ input : {
 
 To add an specific `service` property, use the `addservice` action.
 
-
-```
+```json
 contract : lit
 action : addservice
 input : {
@@ -693,7 +684,7 @@ input : {
 
 To delete an specific `service`, use the `rmservice` action.
 
-```
+```json
 contract : lit
 action : rmservice
 input : {
@@ -709,7 +700,7 @@ input : {
 
 To delete(or deactivate) a DID Document from the Ledgis DID chain, use the `deletedid` action.
 
-```
+```json
 contract : lit
 action : deletedid
 input : {
@@ -735,61 +726,35 @@ Verifiable Credential's status information may be valid, suspended, or discarded
 Below is an example of Verifiable Credential.
 
 ```json
-{
-    "@context": [
+    {
+      "@context": [
         "https://www.w3.org/2018/credentials/v1",
-        "http://127.0.0.1:3000/Credentials.jsonld#FamilyRelationCredential"
-    ],
-    "id": "19f92489-ba85-454f-bbb1-7c60c274c9b9",
-    "type": ["VerifiableCredential", "FamilyRelationCredential"],
-    "issuer": "did:lit:6GZ1RkqMTSxfFuohNTaZfh",
-    "issuanceDate": "2020-12-22T11:18:51.483Z",
-    "expirationDate": "2020-12-29T11:18:51.483Z",
-    "credentialSubject": {
-        "@context": [
-            "https://www.w3.org/2018/credentials/v1",
-            "http://127.0.0.1:3000/Credentials.jsonld#FamilyRelationCredential"
-        ],
-        "id": "19f92489-ba85-454f-bbb1-7c60c274c9b9",
-        "type": ["VerifiableCredential", "FamilyRelationCredential"],
-        "issuer": "did:lit:6GZ1RkqMTSxfFuohNTaZfh",
-        "issuanceDate": "2020-12-22T11:18:51.483Z",
-        "expirationDate": "2020-12-29T11:18:51.483Z",
-        "credentialSubject": {
-		        "type": "FamilyRelationCredential",	
-	          "registerPlace": "서울시 서초구 서초대로 1길 2",
-            "subject": {
-                "name": "picard",
-                "birthDate": "2001-01-10",
-                "residentNum": "010110-123",
-                "gender": "F"
-            },
-            "familyRelation": {
-                "father": {
-                    "name": "DAD",
-                    "birthDate": "1900-09-09",
-                    "residentNum": "1234-5678",
-                    "gender": "M"
-                }
-            }
-        },
-        "credentialStatus": {
-            "id": "http://127.0.0.1:4000/credentialStatus.json",
-            "type": "ibctStatusList2020"
-        },
-        "credentialSchema": {
-            "id": "http://127.0.0.1:3000/credentialSchema.json",
-            "type": "JsonSchemaValidator2018"
-        }
-    },
-    "proof": {
+        "http://127.0.0.1:4000/Credentials.jsonld"
+      ],
+      "vcId": "a264fa35-aa35-46cc-9e84-68d7b5b70941",
+      "type": [ "VerifiableCredential", "HealthCheckUp" ],
+      "issuer": "did:lit:8UPz7JKwCvWHGtVBvayMBP",
+      "issuanceDate": "2021-07-16T03:48:12.833Z",
+      "credentialSubject": {
+        "type": "HealthCheckUp",
+        "subjectDid": "did:lit:W4fgrbXRaSURDcjEJ4APcS",
+        "height": "200cm",
+        "weight": "100kg",
+        "colorVision": "정상",
+        "ophthalmology": "정상",
+        "internalMedicinenternal": "정상",
+        "surgery": "정상",
+        "vision": "not good",
+        "bloodPressure": "129/76"
+      },
+      "proof": {
         "type": "EcdsaSecp256k1Signature2019",
-        "created": "2020-12-22T11:18:52Z",
-        "jws": "eyJhbGciOiJFUzI1NksiLCJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdfQ..MEQCIHgBrdBfzY0Jrm2p4NKBWdCjrGL589HXb2BWyVrQujJIAiBEmyd6fqfLfunxnVm_-2QLVY_03hNVDoIKPCGzQ8X45Q",
+        "created": "2021-07-16T03:48:12Z",
+        "verificationMethod": "did:lit:8UPz7JKwCvWHGtVBvayMBP#10",
         "proofPurpose": "assertionMethod",
-        "verificationMethod": "did:lit:6GZ1RkqMTSxfFuohNTaZfh#0"
+        "jws": "eyJhbGciOiJFUzI1NksiLCJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdfQ..MEUCIQDK_UfYiFBZFc_TOUQdYfq3NFblD63usFs1t8x00F23wAIgIoZX4EN4kdL3nIjeDR5jb0BviNHsKrfRzgm0PruPx_4"
+      }
     }
-}
 ```
 
 </br>
@@ -798,7 +763,7 @@ Below is an example of Verifiable Credential.
 
 To register the status information of a specific Verifiable Credential, use `regvcs` action.
 
-```
+```json
 contract : lit
 action : regvcs
 input : {
@@ -815,7 +780,7 @@ input : {
 
 To update the status information of a specific Verifiable Credential, use `updatevcs` action.
 
-```
+```json
 contract : lit
 action : updatevcs
 input : {
@@ -832,8 +797,8 @@ input : {
 
 If a specific Verifiable Credential has been revoked, the `rmvcs` action is used to delete the state information registered in the blockchain.
 
-```
-contract : lit
+```json
+contract : led.lit
 action : rmvcs
 input : {
     "issuer" : <User account who is removing specific VC status info>
@@ -847,8 +812,8 @@ input : {
 
 If you want to clear specific Verifiable Credentials information registered by the same user, you need to use the `clearvcs` action.
 
-```
-contract : lit
+```json
+contract : led.lit
 action : clearvcs
 input : {
     "issuer" : <User account who is clearing VCs status info>
@@ -878,19 +843,10 @@ Currently, only the following data is stored in the Ledgis DID chain.
 - DID Docuemnt, for identifying an entity
 - Verifiable Credential status info, for VC validity management
 
-
 </br></br>
-
 
 ## References
 
-[1] IBCT, [ibct.kr](http://ibct.kr)
+[1] IBCT, [Ledgis.io](https://www.ledgis.io/)
 
-[2] Decentralized Identifiers (DIDs) v1.0, https://www.w3.org/TR/did-core/
-
-
-
-
-
-
-
+[2] Decentralized Identifiers (DIDs) v1.0, [W3C did-core](https://www.w3.org/TR/did-core/)
