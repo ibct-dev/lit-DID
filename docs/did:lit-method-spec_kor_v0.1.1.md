@@ -139,7 +139,7 @@ did를 포함한 lit DID 식별자의 정규 표현식은 아래와 같다.
 
 </br>
 
-유효한 `did:lit` 식별자 DID는 did:lit:AEZ87t1bi5bRxmVh3ksMUi 같을 수 있다.
+유효한 `did:lit` 식별자 DID는 `did:lit:AEZ87t1bi5bRxmVh3ksMUi` 같을 수 있다.
 
 </br>
 
