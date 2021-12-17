@@ -1,4 +1,4 @@
-# LIT DID Method Specification v0.1.0
+# LIT DID Method Specification v0.1.1
 
 This is version 0.1.1 of the lit DID Method Specification.
 
@@ -48,7 +48,7 @@ LIT in the `did:lit` identification system stands for LEDGIS identity transforma
 
 </br>
 
-예시.
+Example
 
 ```json
 {
@@ -212,8 +212,8 @@ controller DID document example
 </br>
 
 ### 1.3.3 DID Document CRUD Operation
+See section2
 
-(2절 참고)
 
 </br></br>
 
@@ -614,7 +614,7 @@ input : {
 
 </br>
 
-addservice 파라미터 예시
+addservice param exapmle
 
 ```json
 {
@@ -661,9 +661,7 @@ rmservice param example
 
 ## Read
 
-DID Universal Resolver을 통해 `did:lit` 식별자를 조회할 수 있다.
-
-아래의 결과에 따라 input값을 주어야한다.
+You can resolve `did:lit` identifier through DID Universal Resolver
 
 ```txt
 endpoint: /universal resolver
@@ -673,7 +671,7 @@ output: {DID Document}
 
 </br>
 
-예시:
+example:
 
 ```json
 "input": "did:lit:AEZ87t1bi5bRxmVh3ksMUi"
@@ -880,7 +878,7 @@ input : {
 
 </br>
 
-rmvcs 파라미터 예시
+rmvcs param exapmle
 
 ```json
 {
