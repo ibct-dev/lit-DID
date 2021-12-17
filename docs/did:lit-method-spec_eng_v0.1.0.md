@@ -34,7 +34,7 @@ LIT in the `did:lit` identification system stands for LEDGIS identity transforma
 
 </br>
 
-`lit` DID Document에는 아래와 같은 속성값이 포함된다.
+`lit` DID Document has below fields
 
 - id
 - controller
@@ -105,7 +105,7 @@ The name string identifying the lit DID method is `lit`. Identifiers using the `
 
 The identifier of the `did:lit` identification system is composed of the following format.
 
-```json
+```text
 lit-did = "did:lit" + lit-identifier
 lit-identifier = 21, 22 (base58char)
 base58char = "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" / "A" /"B" / "C"
